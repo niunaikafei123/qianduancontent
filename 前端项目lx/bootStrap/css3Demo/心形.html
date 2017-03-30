@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="../content/css/StyleSheet.css" rel="stylesheet" />
+    <script src="../content/js/jquery-1.10.2.min.js"></script>
+    <style>
+        .box{width:90px;height:63px;}
+        .leftpart{width:45px;min-height:90px;  background-size:90px,45px; float:left; background-image:url(/content/images/蝴蝶.png);background-repeat:no-repeat;animation:left 0.5s backwards; transform-origin:right; animation-iteration-count:infinite;}
+        .rightpart{width:45px;min-height:90px; background-size:90px,45px;  float:left;background-image:url(/content/images/蝴蝶.png);background-repeat:no-repeat;background-position:-45px 0px;animation:right 0.5s alternate; transform-origin:left;animation-iteration-count:infinite; position:relative; right:1px; }
+        .box1{animation:movefromleft 6s cubic-bezier(.30,.30,.09,.35); animation-fill-mode:forwards;}
+        .box2{animation:movefromright 6s cubic-bezier(.30,.30,.09,.35);animation-fill-mode:forwards;}
+
+@keyframes left
+{
+0%{transform:rotateY(5deg);}
+10%   {transform:rotateY(15deg);}
+20%  {transform: rotateY(35deg);}
+30%  {transform: rotateY(45deg);}
+40%  {transform: rotateY(60deg);}
+50% {transform: rotateY(70deg);}
+60%   {transform:rotateY(60deg);}
+70%  {transform: rotateY(45deg);}
+80%  {transform: rotateY(30deg);}
+90%  {transform: rotateY(15deg);}
+100%{transform:rotateY(5deg);}
+}
+@keyframes right
+{
+0%{transform:rotateY(5deg);}
+10%   {transform:rotateY(-15deg);}
+20%  {transform: rotateY(-30deg);}
+30%  {transform: rotateY(-45deg);}
+40%  {transform: rotateY(-60deg);}
+50% {transform: rotateY(-70deg);}
+60%   {transform:rotateY(-60deg);}
+70%  {transform: rotateY(-45deg);}
+80%  {transform: rotateY(-30deg);}
+90%  {transform: rotateY(-15deg);}
+100%{transform:rotateY(-5deg);}
+        
+}
+@keyframes movefromleft { 
+    0%{transform:translateX(0px)}
+    75%{transform:translateX(100px)}
+    80%{transform:translateX(100px) rotateY(180deg)}
+    90%{transform:translateX(100px) rotateY(180deg)}
+    99%{transform:translateX(50px) rotateY(180deg);box-shadow:0px 0px 0px 0px yellow ;}
+    100%{transform:translateX(50px) rotateY(180deg); box-shadow:10px 10px 100px 10px yellow ;}
+}
+@keyframes movefromright { 
+    0%{transform:translateX(0px) rotateY(180deg)}
+    75%{transform:translateX(-100px) rotateY(180deg)}
+    80%{transform:translateX(-100px) rotateY(0deg)}
+    90%{transform:translateX(-100px) rotateY(0deg)}
+    99%{transform:translateX(-50px) rotateY(0deg);box-shadow:0px 0px 0px 0px yellow ;}
+    100%{transform:translateX(-50px) rotateY(0deg); box-shadow:10px 10px 100px 10px yellow ;}
+}
+.box{border:none;display:inline-block;}
+/*.box1{transform:rotate(0deg)}*/
+/*.box2{transform:rotateY(180deg)}*/
+    </style>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div class="box box1">
+        <div class="leftpart"></div>
+        <div class="rightpart"></div>
+    </div>
+    <div class="box box2">
+        <div class="leftpart"></div>
+        <div class="rightpart"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app='myapp'>
+	<head>
+		<meta charset="utf-8" />
+		<script src="js/angular.min.js"></script>
+		<script src="js/controller.js"></script>
+		<title></title>
+	</head>
+	<body ng-controller="myCtrl">
+						{{ items }}
+		<table>
+			<tbody>
+
+				<tr ng-repeat="item in items" ng-click="choose(item)">
+					<td>{{item.name}}</td>
+					<td>{{item.touzi1}}</td>
+					<td>{{item.touzi2}}</td>
+				</tr>
+			</tbody>
+		</table>		
+	</body>
+</html>

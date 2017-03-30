@@ -1,0 +1,134 @@
+@charset "utf-8";
+html{font-size: 50px;}
+body{position: relative; max-width: 640px; min-width:320px;width: 100%; height: 100%; margin:0 auto; padding:0px; color:#666; font-family:"microsoft yahei"; font-size: 100%; background: #fff; overflow-x: hidden;}
+div,h1,h2,h3,h4,h5,h6,img,ul,li,dl,dd,strong,span,a,input,button,select,form,textarea,td{ padding:0; margin:0;}
+img{ border:none;}
+ul,dl{ list-style-type:none; margin: 0px; padding: 0px;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+a{ color:#666; text-decoration:none;}
+a:link{color:#666;}
+a:visited{color:#666;}
+a:hover{ color:#666; text-decoration:none;}
+a:active{color:#666;}
+a:active{outline:none}
+img{border:none;}
+input,button,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;vertical-align:middle; outline: none;}
+*{margin:0; padding:0;}
+.l{float: left;}
+.r{float: right;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*+height:1%;}
+
+
+/*去掉a标签在手机端的点击时候的虚线框,ios端的灰色背景*/
+a{
+	-webkit-appearance:none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	outline: none;
+	}
+
+/*去掉模拟checkbox在移动端的灰色背景*/
+*{
+	-webkit-appearance:none;
+	-webkit-tap-highlight-color: transparent;
+	outline: none;
+}
+
+textarea {  -webkit-appearance: none;-moz-appearance:none;}   
+
+
+
+select {
+  /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+  border: solid 1px #fff; 
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  /*在选择框的最右侧中间显示小箭头图片*/
+  /*background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;*/
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 1px;
+}
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+/*去除苹果手机系统默认样式*/
+ input[type="button"],input[type="submit"],input[type="text"],input[type="password"],input[type="reset"],select,input[type="radio"],input[type="checkbox"]{
+        -webkit-appearance: none;
+        -moz-appearance:none;
+        /*去掉input框获取光标时候的灰色背景*/
+        -webkit-tap-highlight-color: transparent;
+      }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0; 
+}
+
+a:active,input:focus,img:focus{ -webkit-tap-highlight-color: transparent;}
+
+
+
+input[type="number"]{-moz-appearance:textfield;}
+
+
+@media only screen and (min-width: 360px) {
+	html{font-size: 56.25px;}
+}
+
+@media only screen and (min-width: 375px) {
+	html{font-size: 58.5938px;}
+}
+
+@media only screen and (min-width: 384px) {
+	html{font-size: 60px;}
+}
+
+@media only screen and (min-width: 400px) {
+	html{font-size: 62.5px;}
+}
+
+@media only screen and (min-width: 414px) {
+	html{font-size: 64.6875px;}
+}
+
+@media only screen and (min-width: 424px) {
+	html{font-size: 66.25px;}
+}
+
+@media only screen and (min-width: 480px) {
+	html{font-size: 75px;}
+}
+
+@media only screen and (min-width: 540px) {
+	html{font-size: 84.375px;}
+}
+
+@media only screen and (min-width: 640px) {
+	html{font-size: 100px;}
+}
+
+
+
+.register_register a{color: #fff;}
+.register_login a{color: #fff;}
+
+.mobile_date{border:none;backgroud:#fff;text-align:-moz-right;text-align:-webkit-right;margin-top:-0.05rem;vertical-align: middle;margin-right: 0.1rem; font-size: 0.26rem; z-index: 97;  background: none;padding-right: 0.3rem !important;background: url(../images/member_images/member_link_more.png) no-repeat; 
+ background-size: 0.14rem 0.27rem; background-position: right center;margin-right: 0.2rem;}
+
+
+
+/*2016-05-27*/
+.footer_nav{position: relative;}
+.new_mgs_tips{width: 0.16rem; height: 0.16rem; background: #f83906; border-radius: 50%; display: inline-block; position: absolute; top: 0.1rem; right: 0.6rem;}
+
+
+
+
+
+
+
+
+

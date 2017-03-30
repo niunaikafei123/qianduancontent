@@ -1,0 +1,89 @@
+﻿body{background:url(/content/images/back.jpg) repeat;color:#655A5A;}
+
+.boxbox{position:fixed;width:100%;}
+.box{position:fixed;top:0;left:0;}
+.box{width:90px;height:63px;transition:all 6s; animation-fill-mode:forwards;border:none;}
+.boxbox .box:last-child{transform:rotateY(180deg);right:0;}
+.boxbox .leftpart{width:45px;min-height:90px;  background-size:90px,45px; float:left; background-image:url(/content/images/蝴蝶.png);background-repeat:no-repeat;animation:left 0.5s backwards; transform-origin:right; animation-iteration-count:infinite;}
+.boxbox .rightpart{width:45px;min-height:90px; background-size:90px,45px;  float:left;background-image:url(/content/images/蝴蝶.png);background-repeat:no-repeat;background-position:-45px 0px;animation:right 0.5s alternate; transform-origin:left;animation-iteration-count:infinite; position:relative; right:1px; }
+@keyframes left
+{
+0%{transform:rotateY(5deg);}
+10%   {transform:rotateY(15deg);}
+20%  {transform: rotateY(35deg);}
+30%  {transform: rotateY(45deg);}
+40%  {transform: rotateY(60deg);}
+50% {transform: rotateY(70deg);}
+60%   {transform:rotateY(60deg);}
+70%  {transform: rotateY(45deg);}
+80%  {transform: rotateY(30deg);}
+90%  {transform: rotateY(15deg);}
+100%{transform:rotateY(5deg);}
+}
+@keyframes right
+{
+0%{transform:rotateY(5deg);}
+10%   {transform:rotateY(-15deg);}
+20%  {transform: rotateY(-30deg);}
+30%  {transform: rotateY(-45deg);}
+40%  {transform: rotateY(-60deg);}
+50% {transform: rotateY(-70deg);}
+60%   {transform:rotateY(-60deg);}
+70%  {transform: rotateY(-45deg);}
+80%  {transform: rotateY(-30deg);}
+90%  {transform: rotateY(-15deg);}
+100%{transform:rotateY(-5deg);}
+        
+}
+
+
+
+
+
+
+.tableshow{width:100%; border-collapse:collapse; border-spacing:0;}
+/*.tableshow tr:first-child{border-bottom:3px solid #ddd;}*/
+.tableshow tr th{padding:8px 0 8px 0;}
+.tableshow tr td{padding:8px 2px 8px 2px; text-align:center;}
+.tableshow tr:nth-child(even){border-bottom:1px solid #f4f4f4  ; }
+.tableshow tr:hover{background-color:#ddd;}
+
+
+.btn{border:none; background-color:#A7A1E1; border-radius:3px; border-bottom-left-radius:5px; border-bottom-right-radius:5px; margin:auto 15px auto 15px;padding:10px 20px 10px 20px; color:white; font-weight:bold;font-size:14px; letter-spacing:8px; box-shadow:0px 3px 3px #524B92;}
+.btn:hover{text-shadow:0px 2px 2px #ddd;box-shadow:0px 5px 5px #524B92;}
+.btn:active{box-shadow:0px 1px 1px #524B92; border:none;}
+.btn:focus{outline:none;}
+
+input.btn[type='reset']{border:1px solid #A7A1E1; background-color:#F2ECEC; border-radius:3px; border-bottom-left-radius:5px; border-bottom-right-radius:5px; margin:auto 15px auto 15px;padding:10px 20px 10px 20px; font-weight:bold;font-size:14px; letter-spacing:8px; }
+/*input[type='reset']:focus{outline:none;}*/
+
+input[type='text']{width:300px;height:30px; line-height:30px;padding-left:5px;font-size:14px;color:#524848;border:1px solid #9E9D9D;border-radius:3px;}
+input[type='text']:focus{outline:#8780c7 auto 5px;}
+
+
+
+select{width:300px;height:30px; line-height:30px;font-size:14px;}
+select:focus{outline:#8780c7 auto 5px;}
+
+textarea{width:300px; min-height:185px;border-radius:3px;}
+textarea:focus{outline:#8780c7 auto 5px;}
+
+.radiolabel{padding-right:20px;}
+.radiolabel input[type='radio']{margin-right:10px;}
+
+*[disabled='disabled']{cursor:not-allowed;}
+.button[disabled='disabled']{border:1px solid #EBEBE4 ; background-color:#A09EB7; }
+.button[disabled='disabled']:hover{text-shadow:0px 0px 0px #ddd;box-shadow:0px 3px 3px #524B92;}
+
+
+.tableform{width:100%;}
+.tableform tr td:first-child{min-width:50px; max-width:200px;text-align:right; font-weight:bold;}
+.tableform tr td{font-size:14px;padding:8px 4px 8px 4px;}
+.tableform tr td:first-child span{color:red;padding-right:5px;}
+.tableform select{width:137px;}
+
+.formbasicdata h2{padding-left:30px;border-bottom:1px solid #7f579e;}
+
+.imgbox{width:262px;float:left; text-align:center; margin-top:20px;}
+.imgbox img{max-width:230px; max-height:300px; box-shadow: 0px 2px 15px #101010; border-radius:5px; }
+.imgbox img:hover{box-shadow:0px 3px 20px #101010;}

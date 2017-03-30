@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="Expires" CONTENT="-1">
+		<meta http-equiv="Cache-Control" CONTENT="no-cache">
+		<meta http-equiv="Pragma" CONTENT="no-cache">
+		<link rel="stylesheet" type="text/css" href="../css/public.css">
+		<link rel="stylesheet" type="text/css" href="../css/public.css">
+		<script src="../js/angular.js"></script>
+		<script src="../js/angular-ui-router.js"></script>
+		<script src="../js/ab.js"></script>
+		<style type="text/css">
+			.box{font-size: 0.26rem;}
+			table{
+				width: 100%;
+				
+			}
+			td{height: 0.5rem; text-align: center;border-bottom: 0.02rem solid #D0D3CF;}
+		</style>
+	<body>
+		<div ng-app="app">
+		<div class="box" ng-controller="BCtrl">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr ng-repeat="item in items"  ng-click="toPage1(name)">
+					<td><img ng-src="{{item.imgurl}}"/></td>
+					<td>{{item.name}}</td>
+					<td>{{item.pwd}}</td>
+				</tr>
+			</table>
+		</div>
+ </div>
+	</body>
+ 
+</html>

@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="angular.js"></script>
+		<title>表单验证</title>
+		<style type="text/css">
+			.box {
+				width: 200px;
+				margin: 0 auto;
+				font-family: "microsoft yahei";
+				font-size: 14px;
+			}
+			
+			.box label {
+				font-size: 16px;
+				display: block;
+				margin: 10px 0;
+			}
+			
+			.box input[type='text'],
+			.box input[type='password'] {
+				border: 1px solid #DDDDDD;
+				border-radius: 5px;
+				height: 30px;
+				line-height: 30px;
+				display: block;
+				width: 100%;
+			}
+			
+			.box input[type="submit"] {
+				border: 1px solid #DDDDDD;
+				border-radius: 5px;
+				height: 30px;
+				line-height: 30px;
+				display: block;
+				width: 120px;
+				margin-top: 15px;
+			}
+			
+			input.error {
+				border: 1px solid #a10;
+			}
+			
+			.error {
+				color: #a10;
+			}
+			
+			input[type='text'].has-success,
+			input[type='password'].has-success {
+				border: 1px solid darkgreen;
+			}	
+			input[type="submit"]:invalid{
+				background: black;
+			}
+			input[type="submit"]:valid{
+				background: red;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div class="box" ng-app="app" ng-controller="loginCtrl">
+			<h2>表单验证</h2>
+			<form name="myform" ng-submit="loginForm()" novalidate>
+				<!--novalidate禁止原生form校验功能，防止与自己写的JS冲突-->
+				<!--touched表示文本框失去焦点的时候-->
+				<label for="">用户名</label>
+				<input type="text" name="username" placeholder="请输入用户名" ng-model="userInfo.username" required ng-minlength="4" ng-maxlength="32" ng-class="{'has-success':myform.username.$valid}">
+				<p class="error" ng-if="(myform.username.$error.minlength || myform.username.$error.maxlength) &&  myform.username.$touched">用户名长度应该在4到32位之间</p>
+				<p class="error" ng-if="myform.username.$error.required &&  myform.username.$touched">用户名不能为空</p>
+				<label for="">密码</label>
+				<input type="password" name="password" placeholder="请输入密码" ng-minlength="6" ng-maxlength="32" ng-model="userInfo.pwd" required ng-class="{'has-success':myform.password.$valid}">
+				<p class="error" ng-if="(myform.password.$error.minlength || myform.password.$error.maxlength) &&  myform.username.$touched">密码长度应该在6到32位之间</p>
+				<p class="error" ng-if="myform.password.$error.required &&  myform.password.$touched">密码不能为空</p>
+				<label for="">确认密码</label>
+				<input type="password" name="password2" placeholder="请输入确认密码" ng-model="userInfo.pwd2" required compare='userInfo.pwd' ng-class="{'has-success':myform.password2.$valid}">
+				<p class="error" ng-if="myform.password2.$error.compare &&  myform.password2.$touched">两次密码输入不一致</p>
+				<input type="submit" value="登录"  ng-disabled="myform.$invalid"/>
+			</form>
+		</div>
+		<script>
+			var app = angular.module("app", []);
+			app.controller("loginCtrl", function($scope) {
+				$scope.userInfo = {};
+				$scope.loginForm = function() {
+					console.log($scope.userInfo);
+				}
+			})
+
+			.directive('compare', function() {
+				return {
+					restrict: 'AE',
+					scope: {
+						orgText: '=compare'
+					},
+					require: 'ngModel',
+					link: function(scope, ele, att, ctr) {
+						ctr.$validators.compare = function(v) {
+							return v == scope.orgText;
+						}
+						scope.$watch('orgText', function() {
+							ctr.$validate();
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

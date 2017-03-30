@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="../content/css/StyleSheet.css" rel="stylesheet" />
+    <script src="../content/js/jquery-1.10.2.min.js"></script>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <fieldset>
+        <legend>border</legend>
+        <div>
+            
+            <style>
+                .shadow{
+                    border-radius:15px;
+                    box-shadow:15px 15px 15px #888888; 
+
+                    padding:20px;
+                    background-image:url(/content//images/bg_flower_small.gif);
+                    background-size:30px 50px;
+                    background-repeat:no-repeat;
+                    background-origin:content-box;
+
+                    background-clip:padding-box;
+
+                }
+            </style>
+            <div class="box shadow">
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>文本效果</legend>
+        <div >
+            <style>
+                .textshadow{
+                    text-shadow:2px 2px 1px #333;
+                    word-wrap:break-word;
+                    font-stretch:wider;
+                }
+                .textshadow::before{border:1px solid #000; border-radius:50%; content:'SB';position:relative;top:-10px; right:-200px;width:100px; height:100px;}
+            </style>
+            <div class="box textshadow">
+                大大发阿斯蒂芬爱妃
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>2D rotate(旋转)</legend>
+        <div>
+            <style>
+                .rotate{
+                    text-align:center;
+                    transform: rotate(30deg);
+                    -ms-transform: rotate(30deg);		/* IE 9 */
+                    -webkit-transform: rotate(30deg);	/* Safari and Chrome */
+                    -o-transform: rotate(30deg);		/* Opera */
+                    -moz-transform: rotate(30deg);
+                }
+            </style>
+            <div class="box">
+                <div class="rotate">2D</div>
+
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>2D translate(改变)</legend>
+        <div>
+            <style>
+                .translate { transform: translate(50px,100px);
+-ms-transform: translate(50px,100px);		/* IE 9 */
+-webkit-transform: translate(50px,100px);	/* Safari and Chrome */
+-o-transform: translate(50px,100px);		/* Opera */
+-moz-transform: translate(50px,100px);	 }
+            </style>
+            <div class="box">
+                <div class="translate">2D</div>
+                啊啊大厦打法是否阿斯蒂芬
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>2D scale(比例 规模)</legend>
+        <div>
+            <style>
+                .scale { transform: scale(2,4);
+-ms-transform: scale(2,4);	/* IE 9 */
+-webkit-transform: scale(2,4);	/* Safari 和 Chrome */
+-o-transform: scale(2,4);	/* Opera */
+-moz-transform: scale(2,4);	/* Firefox */}
+            </style>
+            <div class="box">
+                <div class="scale">2D</div>
+                啊啊大厦打法是否阿斯蒂芬
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>2D skew(歪斜 倾斜)</legend>
+        <div>
+            <style>
+                .skew { transform: skew(30deg,20deg);
+-ms-transform: skew(30deg,20deg);	/* IE 9 */
+-webkit-transform: skew(30deg,20deg);	/* Safari and Chrome */
+-o-transform: skew(30deg,20deg);	/* Opera */
+-moz-transform: skew(30deg,20deg);	/* Firefox */}
+            </style>
+            <div class="box">
+                <div class="skew">2D</div>
+                啊啊大厦打法是否阿斯蒂芬
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>2D matrix(将所有方法组合)</legend>
+        <div>
+            <style>
+                .matrix { transform:matrix(0.866,0.5,-0.5,0.866,0,0);
+-ms-transform:matrix(0.866,0.5,-0.5,0.866,0,0);		/* IE 9 */
+-moz-transform:matrix(0.866,0.5,-0.5,0.866,0,0);	/* Firefox */
+-webkit-transform:matrix(0.866,0.5,-0.5,0.866,0,0);	/* Safari and Chrome */
+-o-transform:matrix(0.866,0.5,-0.5,0.866,0,0);		/* Opera */}
+            </style>
+            <div class="box">
+                <div class="matrix">2D</div>
+                啊啊大厦打法是否阿斯蒂芬
+            </div>
+        </div>
+    </fieldset>
+
+</body>
+</html>

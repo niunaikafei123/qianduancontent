@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<script src="angular.js"></script>
+		<title></title>
+	</head>
+
+	<body>
+		<div class="box" ng-app="app" ng-controller="boxCtrl">
+			<hello>
+				<span>原始的内容，</span><br/>
+				<span>还会在这里。</span>
+			</hello>
+		</div>
+
+		<script>
+			var app = angular.module("app", []);
+			app.controller("boxCtrl", function() {
+
+			})
+			app.directive("hello", function() {
+				return {
+					restrict: 'E', //指令申明方式
+					replace: true,
+					//require: '^xxx',  
+					scope: {
+						
+
+					},
+					template: '<div>Hi there <span ng-transclude></span></div>',
+					transclude: true,
+
+				};
+			})
+		</script>
+	</body>
+
+</html>
