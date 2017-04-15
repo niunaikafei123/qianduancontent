@@ -1,0 +1,40 @@
+{
+  "name": "shadyfront",
+  "version": "0.0.1",
+  "description": "A VC management project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.songshushan.com:shadyfront.git"
+  },
+  "keywords": [
+    "angular",
+    "VC",
+    "echarts"
+  ],
+  "author": "D•Leung",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^3.2.2",
+    "gulp-htmllint": "0.0.8",
+    "gulp-jshint": "^2.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.7",
+    "gulp-wrap": "^0.11.0",
+    "jasmine-core": "^2.4.1",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.1.0",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-jasmine": "^0.3.8",
+    "run-sequence": "^1.1.5"
+  }
+}

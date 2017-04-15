@@ -1,0 +1,26 @@
+<div ng-controller="addActionController as vm">
+    <a class="back-link" ui-sref="main.privateprojectdetail({'projectId':vm.projectId})">&lt;&lt;返回项目详情</a>
+    <div class="add-action">
+        <form name="form1" class="editinfor" ng-submit="vm.addAction(vm.newaction)" >
+             <div class="content_box">
+                 <div class="title-box">
+                     <p class="gg">标题</p>
+                     <input type="text" class="title-txt" ng-model="vm.newaction.title" required />
+                 </div>
+                 <div class="edit-box">
+                     <p class="gg" >内容</p>
+                     <textarea  ng-model="vm.newaction.content"  required  cols="30" rows="10" class="edit"></textarea>
+                 </div>
+                 <div class="edit-box">
+                     <label for="file_btn" class="add_sth">添加附件</label>
+                     <input type="file" id="file_btn" ngf-select ng-model="vm.newaction.file"/>
+                     <p class="file-name">{{vm.newaction.file.name}}</p>
+                     <uib-progressbar ng-show="vm.progress >= 0" value="vm.progress" type="success"><b>{{vm.progress}}%</b></uib-progressbar>
+                 </div>
+             </div>
+            <div class="btn-tijiao">
+                <input type="submit" value="提交" />
+            </div>
+        </form>
+    </div>
+</div>

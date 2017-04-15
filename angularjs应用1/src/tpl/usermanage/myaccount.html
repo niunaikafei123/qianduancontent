@@ -1,0 +1,27 @@
+<div class="myaccount" ng-controller="myaccountController as vm">
+	 <form class="form-horizontal">
+		 <h2 class="changepassword">修改个人信息页面</h2>
+		  <div class="change-box">
+		    <label class="change-left">用户密码</label>
+		    <div class="change-right">
+		      <input type="password" class="form-control" placeholder="用户密码" ng-model="vm.password" ng-readonly="vm.readonly">
+		    </div>
+		  </div>
+		  <div class="change-box">
+		    <label class="change-left">真实姓名</label>
+		    <div class="change-right">
+		      <input type="text" class="form-control" placeholder="请输入您的真实姓名" ng-model="vm.realName" ng-readonly="vm.readonly">
+		    </div>
+		  </div>
+		  <div class="change-box">
+		    <label  class="change-left">职位</label>
+		    <div class="change-right">
+		      <input type="text" class="form-control" placeholder="请输入您的职位" ng-model="vm.position" ng-readonly="vm.readonly">
+		    </div>
+		  </div>
+		  <div class="form-group personalbtn">
+		      <button class="btn1 bgc-ju" ng-click="vm.taggle()">编辑</button>
+		      <button class="btn1 bgc-lv" ng-click="vm.save()">确定</button>
+		  </div>
+	</form>
+</div>

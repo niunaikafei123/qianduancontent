@@ -1,0 +1,68 @@
+<div ng-controller="addInvestController as vm">
+    <a class="back-link" ui-sref="main.privateprojectdetail({'projectId':vm.projectId})">&lt;&lt;返回项目详情</a>
+        <div class="addInvestment" ng-init="vm.load()">
+            <form class="addInvestment-box" ng-submit="vm.addInvest(vm.newinvest)" >
+                <p class="invest-title">融资信息</p>
+                <div class="form-addInvestment">
+                    <p class="left">融资轮次</p>
+                    <div class="right">
+                        <select ng-model="vm.newinvest.roundId"
+                                ng-options="round.roundId as round.roundName for round in vm.roundlist">
+                        </select>
+                    </div>
+                </div>
+                <div  class="form-addInvestment">
+                    <p class="left">融资额度</p>
+                    <div class="right">
+                        <input type="number" ng-model="vm.newinvest.moneynum" required />
+                        <span>万元</span>
+                    </div>
+                </div>
+
+                <div class="form-addInvestment">
+                    <p class="left">货币类型</p>
+                    <div class="right money">
+                        {{vm.newinvest.moneyType | moneyTypedesc}}
+                    </div>
+                </div>
+                <div  class="form-addInvestment">
+                    <p class="left">出让比例</p>
+                    <div class="right">
+                        <input type="number" ng-model="vm.newinvest.percentagenum" required />
+                        <span>%</span>
+                    </div>
+                </div>
+                <div  class="form-addInvestment">
+                    <p class="left">项目估值</p>
+                    <div class="right money">
+                        {{  100 * vm.newinvest.moneynum / vm.newinvest.percentagenum | number:2 }}万元
+                    </div>
+                </div>
+                <div class="form-addInvestment">
+                    <p class="left">投资基金</p>
+                    <div class="right">
+                        <select ng-model="vm.newinvest.fundId"
+                                ng-options="fund.fundId as fund.fundName for fund in vm.fundlist">
+                        </select>
+                    </div>
+                </div>
+                <div  class="form-addInvestment">
+                    <p class="left">跟投额度</p>
+                    <div class="right">
+                        <input type="number" ng-model="vm.newinvest.follownum" required />
+                        <span>万元</span>
+                    </div>
+                </div>
+                <div  class="form-addInvestment">
+                    <p class="left">投资备注</p>
+                    <div class="right">
+                        <input type="text" ng-model="vm.newinvest.comment" required />
+                    </div>
+                </div>
+
+                <div class="addInvestment-btn">
+                    <input type="submit" class="btn1 bgc-ju" value="提交" />
+                </div>
+            </form>
+    </div>
+</div>

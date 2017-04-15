@@ -1,0 +1,16 @@
+<div ng-controller="shareController as vm">
+    <a class="back-link" ui-sref="main.privateprojectdetail({'projectId':vm.projectId})">&lt;&lt;返回项目详情</a>
+        <div class="projectShare" ng-init="vm.loaduser()">
+            <form class="share-box" ng-submit="vm.doshare()" >
+                <div class="share-radio">
+                    <label for="userId">分享目标选择：</label>
+                    <select id="userId" ng-model="vm.sharedUserId"
+                        ng-options="item.userId as item.realName for item in vm.userlist">
+                    </select>
+                </div>
+                <div class="share-btn">
+                    <input type="submit" class="bgc-ju btn1" value="提交" />
+                </div>
+            </form>
+        </div>
+</div>

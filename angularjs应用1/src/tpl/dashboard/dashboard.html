@@ -1,0 +1,85 @@
+<div ng-controller="dashboardController as vm">
+	<div class="con1"  >
+		<div class="detail-infobox" ng-show="vm.isEmpty">
+			<p class="nodata">近期没有更新项目</p>
+		</div>
+		<div class="con-l" ng-repeat="item in vm.list">
+			<div class="top">
+				<h2>
+					<div>{{ item.projectName }}</div>
+					<div><span class="tag" ng-repeat="item in item.tag.split(';')">{{item}}</span></div>
+					<div>{{item.categoryName}}</div>
+					<div>{{item.areaName}}</div>
+					<div>{{item.roundName}}</div>
+				</h2>
+			</div>
+			<div class="content">
+				<span>项目简介</span>
+				<p>{{ item.description }}</p>
+				<table >
+					<tbody>
+						<tr>
+							<td style="white-space:nowrap; padding-right:10px">股权结构</td>
+							<td>{{ item.options }}</td>
+						</tr>
+						<tr>
+							<td>市场分析</td>
+							<td>{{ item.market }}</td>
+						</tr>
+						<tr>
+							<td>商业模式</td>
+							<td>{{ item.businessModel }}</td>
+						</tr>
+						<tr>
+							<td>竞争对手</td>
+							<td>{{ item.competitive }}</td>
+						</tr>
+						<tr>
+							<td>联系方式 </td>
+							<td>{{ item.contact }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<comment-list pid="{{ item.projectId }}"></comment-list>
+
+
+			</div>
+		</div>
+		<div class="tgr">
+		<span>
+			<uib-pagination total-items="vm.total" ng-model="vm.pageNumber"
+							items-per-page="vm.pageSize" max-size="7"  boundary-link-numbers="true"
+							ng-change="vm.showProject()" previous-text="上一页"
+							next-text="下一页"></uib-pagination>
+		</span>
+		</div>
+	</div>
+
+
+	<div class="con2">
+		<table>
+			<thead>
+				<tr>
+					<th><span class="title">工作力统计</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><pie-chart config="vm.barconfig" data="vm.bardata"></pie-chart></td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="topheight">
+			<thead>
+				<tr>
+					<th><span class="title">项目状态统计</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><pie-chart config="vm.pieconfig" data="vm.piedata"></pie-chart></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>		
+</div>

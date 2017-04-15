@@ -1,0 +1,160 @@
+<div class="projectmanage" ng-controller="manageController as vm">	 
+	<table class="table table-border">
+		<caption>可跟投投资记录表</caption>
+		<thead>
+			<tr>
+				<th>投资id</th>
+				<th>项目名称</th>
+				<th>融资轮次</th>
+				<th>融资总额</th>
+				<th>货币类型</th>
+				<th>占比</th>
+				<th>总跟投额度</th>
+				<th>已跟投额度</th>
+				<th>详细信息</th>
+				<th>跟投</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="invest in vm.investlist">
+				<td>{{invest.investId}}</td>
+				<td>{{invest.projectName}}</td>
+				<td>{{invest.roundName}}</td>
+				<td>{{invest.money | moneydesc}}</td>
+				<td>{{invest.moneyType | moneyTypedesc}}</td>
+				<td>{{invest.percentage | percentage}}</td>
+				<td>{{invest.follow | moneydesc}}</td>
+				<td>{{invest.followd | moneydesc}}</td>
+				<td class="gentou"><button class="bgc-lv btn1" ui-sref="main.projectdetail({'projectId':invest.projectId})">查看</button></td>
+				<td class="gentou"><input type="number" ng-model="invest.amountnum" /><span>万元</span>
+				<button class="btn1 bgc-ju" ng-click="vm.followinvest(invest)">跟投</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p class="progectlist">系统项目列表</p>
+	<div class="gonghaitop">
+		<div>
+			<label for="projectName" class="sr-only">项目名称</label>
+			<span>项目名称</span>
+			<input type="text"  id="projectName"  placeholder="项目名称" ng-model="vm.projectName" ng-blur="vm.newsearch()"  ng-keyup="vm.keyup($event)">
+		</div>
+		<div>
+			<label for="area" class="sr-only">地区</label>
+			<span>地区</span>
+			<select id="area"  ng-model="vm.areaId" ng-change="vm.newsearch()"
+				  ng-options="area.areaId as area.areaName for area in vm.arealist">
+			</select>
+		</div>
+		<div>
+			<label for="category" class="sr-only">行业</label>
+			<span>行业</span>
+			<select id="category" ng-model="vm.categoryId" ng-change="vm.newsearch()"
+				  ng-options="category.categoryId as category.categoryName for category in vm.categorylist">
+			</select>
+		</div>
+		<div>
+			<label for="round" class="sr-only">融资轮次</label>
+			<span>融资轮次</span>
+			<select id="round" ng-model="vm.roundId" ng-change="vm.newsearch()"
+                  ng-options="round.roundId as round.roundName for round in vm.roundlist">
+			</select>
+		</div>
+		<div>
+			<label for="status" class="sr-only">状态</label>
+			<span>状态</span>
+			<select id="status" ng-model="vm.status" ng-change="vm.newsearch()"
+                  ng-options="status.id as status.desc for status in vm.statuslist">
+			</select>
+		</div>
+	</div>
+	<table class="table table-border">
+		<thead>
+			<tr>
+				<th>项目名称</th>
+				<th>地区</th>
+				<th>行业</th>
+				<th>融资轮次</th>
+				<th>股权结构</th>
+				<th>项目状态</th>
+				<th>详细信息</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="project in vm.projectList">
+				<td>{{ project.projectName }}</td>
+                <td>{{ project.areaName }}</td>
+                <td>{{ project.categoryName }}</td>
+                <td>{{ project.roundName }}</td>
+                <td>{{ project.options }}</td>
+                <td>{{ project.status | statusdesc}}</td>
+                <td class="gentou"><button class="btn1 bgc-lv" ui-sref="main.projectdetail({'projectId':project.projectId})">查看</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="tgr">
+        <span>
+            <uib-pagination class="pagination-sm" total-items="vm.total" ng-model="vm.pageNumber" 
+                items-per-page="vm.pageSize" max-size="7"  boundary-link-numbers="true" 
+                ng-change="vm.search()" previous-text="上一页" 
+                next-text="下一页"></uib-pagination>
+        </span>
+    </div>
+    <table class="table table-border">
+		<caption>已跟投投资记录列表</caption>
+		<thead>
+			<tr>
+				<th>投资id</th>
+				<th>项目名称</th>
+				<th>轮次</th>
+				<th>融资总额</th>
+				<th>货币类型</th>
+				<th>占比</th>
+				<th>总跟投额度</th>
+				<th>已跟投额度</th>
+				<th>我的跟投额</th>
+				<th>详细信息</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="invest in vm.myfollowlist">
+				<td>{{invest.investId}}</td>
+				<td>{{invest.projectName}}</td>
+				<td>{{invest.roundName}}</td>
+				<td>{{invest.money | moneydesc}}</td>
+				<td>{{invest.moneyType | moneyTypedesc}}</td>
+				<td>{{invest.percentage | percentage }}</td>
+				<td>{{invest.follow | moneydesc}}</td>
+				<td>{{invest.followd | moneydesc}}</td>
+				<td>{{invest.amount | moneydesc}}</td>
+				<td class="gentou"><button class="btn1 bgc-lv" ui-sref="main.projectdetail({'projectId':invest.projectId})">查看</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

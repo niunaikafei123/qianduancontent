@@ -1,0 +1,356 @@
+<div ng-controller="addfundController as vm">
+	<div class="addfund">
+		<ul class="add-progress">
+			<li ng-class="{true:'active'}[vm.step>0]">
+				<p ng-class="{true:'active'}[vm.step == 1]">第一步：基础信息</p>
+				<div class="progress"></div>
+			</li>
+			<li ng-class="{true:'active'}[vm.step>1]">
+				<p ng-class="{true:'active'}[vm.step == 2]">第二步：GP&LP</p>
+				<div class="progress"></div>
+			</li>
+			<li ng-class="{true:'active'}[vm.step>2]">
+				<p ng-class="{true:'active'}[vm.step == 3]">第三步上传文件</p>
+				<div class="progress"></div>
+			</li>
+		</ul>
+		<div class="foudcontent" ng-show="vm.step==1">
+			<div class="top">添加基金</div>
+			<div class="content">
+				<form class="form-horizontal" ng-submit="vm.doStep1()">
+					<div class="form-group">
+						<label for="fundName" class="col-sm-2 control-label">基金名称</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="vm.newfund.fundName" id="fundName" name="fundName" placeholder="基金名称" required />
+						</div>
+					</div>
+					<div class="setuptime">
+						<label for="startDate" class="col-sm-2 control-label">成立时间</label>
+						<div class="col-sm-6">
+							<p class="input-group">
+								<input type="text" readonly class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="vm.startDate" placeholder="yyyy-MM-dd" id="startDate" is-open="vm.opened" required close-text="关闭" current-text="今天" clear-text="清除"/>
+	         				<span class="input-group-btn">
+	            				<button type="button" class="btn btn-default rili-btn" ng-click="vm.open2()">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+	          				</span>
+							</p>
+						</div>
+					</div>
+					<div class="form-group cle">
+						<label for="money" class="col-sm-2 control-label">募集额度</label>
+						<div class="col-sm-5 raisezijin">
+							<input type="number" min="0" class="form-control" ng-model="vm.newfund.moneynum" id="money" name="money" placeholder="募集额度" required />
+							<span>万元</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="moneyType" class="col-sm-2 control-label">货币类型</label>
+						<div class="col-sm-4">
+							<select id="moneyType" ng-model="vm.newfund.moneyType" class="btn btn-default dropdown-toggle center"
+								ng-options="item.typeId as item.typeName for item in vm.moneyTypelist">
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="investTendency" class="col-sm-2 control-label">投资方向</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="vm.newfund.investTendency" id="investTendency" name="investTendency" placeholder="投资方向" required />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="period" class="col-sm-2 control-label">存续年份</label>
+						<div class="col-sm-5 raisezijin">
+							<input type="number" min="0" class="form-control" ng-model="vm.newfund.period" id="period" name="period" placeholder="存续年份" required />
+							<span>年</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="managers" class="col-sm-2 control-label">总经办成员</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="vm.newfund.managers" id="managers" name="managers" placeholder="总经办成员" required />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="lps" class="col-sm-2 control-label">投委会成员</label>
+						<div class="col-sm-10 ">
+							<input type="text" class="form-control" ng-model="vm.newfund.lps" id="lps" name="lps" placeholder="投委会成员" required />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="directors" class="col-sm-2 control-label">董事</label>
+						<div class="col-sm-10 ">
+							<input type="text" class="form-control" ng-model="vm.newfund.directors" id="directors" name="directors" placeholder="董事" required />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="legal" class="col-sm-2 control-label">法人</label>
+						<div class="col-sm-10 ">
+							<input type="text" class="form-control" ng-model="vm.newfund.legal" id="legal" name="legal" placeholder="法人" required />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="supervisors" class="col-sm-2 control-label">监事</label>
+						<div class="col-sm-10 ">
+							<input type="text" class="form-control" ng-model="vm.newfund.supervisors" id="supervisors" name="supervisors" placeholder="监事" required />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="address" class="col-sm-2 control-label">地址</label>
+						<div class="col-sm-10 ">
+							<input type="text" class="form-control" ng-model="vm.newfund.address" id="address" name="address" placeholder="地址" required />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="supplyment" class="col-sm-2 control-label ">补充信息</label>
+						<div class="col-sm-10 ">
+							<textarea placeholder="补充信息（选填）" class="form-control" rows="4" ng-model="vm.newfund.supplyment" id="supplyment" name="supplyment"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10 ">
+							<button type="submit" class="btn1 bgc-ju flr">下一步</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+		<div class="foudcontent" ng-show="vm.step==2">
+			<div class="top ">添加基金</div>
+			<div class="content">
+				<form class="form-horizontal">
+					<p>GP信息</p>
+					<table class="table table-border">
+						<thead>
+							<tr>
+								<th>姓名</th>
+								<th>电话</th>
+								<th>微信</th>
+								<th>邮箱</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="gp in vm.gplist">
+								<td>{{gp.name}}</td>
+								<td>{{gp.phone}}</td>
+								<td>{{gp.wechat}}</td>
+								<td>{{gp.email}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+
+				<form class="form-horizontal">
+					<p>LP信息</p>
+					<table class="table table-border">
+						<thead>
+							<tr>
+								<th>姓名</th>
+								<th>电话</th>
+								<th>邮箱</th>
+								<th>微信</th>
+								<th>资金额度</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="lp in vm.lplist">
+								<td>{{lp.name}}</td>
+								<td>{{lp.phone}}</td>
+								<td>{{lp.wechat}}</td>
+								<td>{{lp.email}}</td>
+								<td>{{lp.money | moneydesc }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+
+				<div class="xinzenggrp">
+					<div class="addgrp">
+						<form class="form-horizontal" ng-submit="vm.addgp(vm.newgp)">
+							<p>新增GP</p>
+							<div class="form-group ">
+								<div class="col-sm-12 ">
+									<input id="gpname" type="text" ng-model="vm.newgp.name" class="form-control" placeholder="姓名" required/>
+								</div>
+								<div class="col-sm-12 ">
+									<input id="gpphone" type="text" ng-model="vm.newgp.phone" class="form-control" placeholder="电话（选填）" />
+								</div>
+								<div class="col-sm-12 ">
+									<input id="gpwechat" type="text" ng-model="vm.newgp.wechat" class="form-control" placeholder="微信（选填）" />
+								</div>
+								<div class="col-sm-12 ">
+									<input id="gpemail" type="text" ng-model="vm.newgp.email" class="form-control" placeholder="邮箱（选填）" />
+								</div>
+								<button class="btn2 bgc-lv">增加</button>
+							</div>
+						</form>
+					</div>
+					<div class="addgrp">
+						<form class="form-horizontal" ng-submit="vm.addlp(vm.newlp)">
+							<p>新增LP</p>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input id="lpname" type="text" ng-model="vm.newlp.name" class="form-control" placeholder="姓名" required/>
+								</div>
+								<div class="col-sm-12">
+									<input id="lpphone" type="text" ng-model="vm.newlp.phone" class="form-control" placeholder="电话（选填）" />
+								</div>
+								<div class="col-sm-12">
+									<input id="lpwechat" type="text" ng-model="vm.newlp.wechat" class="form-control" placeholder="微信（选填）" />
+								</div>
+								<div class="col-sm-12">
+									<input id="lpemail" type="text" ng-model="vm.newlp.email" class="form-control" placeholder="邮箱（选填）" />
+								</div>
+								<div class="col-sm-12 lpzijin">
+									<input id="lpmoney" type="number" min="0" ng-model="vm.newlp.moneynum" class="form-control" placeholder="资金" required/>
+									<span>万元</span>
+								</div>
+								<button class="btn2 bgc-lv">增加</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="form-group ">
+					<div class="col-sm-offset-2 col-sm-10 ">
+						<button type="submit" class="btn1 bgc-ju flr" ng-click="vm.step=3 ">下一步</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="foudcontent" ng-show="vm.step==3">
+			<div class="top ">上传附件</div>
+			<div class="content ">
+				<div class="lgplist">
+					<p class="name right-center">章程文件</p>
+					<table class="table table-border">
+						<thead>
+						<tr>
+							<th>文件名</th>
+							<th>描述</th>
+							<th>下载地址</th>
+							<th>上传时间</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="file in vm.filelist1">
+							<td>{{file.name}}</td>
+							<td>{{file.description}}</td>
+							<td><a href="{{file.fundFileId | fundFileUrl}}" tagget="_bank">点击下载</a></td>
+							<td>{{file.timeAdded}}</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<form name="form1" ng-submit="vm.uploadregulationFile2()">
+					<fieldset>
+						<p class="legend">上传章程文件</p>
+						<div class="a-upload">选择文件
+							<input type="file" ngf-select ng-model="vm.regulationFile.content" name="regulationFile" required />
+						</div>
+						<span class="filename">{{vm.regulationFile.content.name}}</span>
+						<div class="form-group miaoshuzong">
+							<label class="col-sm-2 control-label ">描述：</label>
+							<textarea  class="form-control miaoshu" rows="2" ng-model="vm.regulationFile.description" name="regulationFiledesc" required ></textarea>
+							<span ng-show="vm.regulationFile.result">{{vm.regulationFile.result.retMsg}}</span>
+						</div>
+						<div ng-show="vm.regulationFile.progress>= 0">
+							<uib-progressbar value="vm.regulationFile.progress" type="success">
+								{{vm.regulationFile.progress}}%
+							</uib-progressbar>
+						</div>
+						<input type="submit" class="btn1 bgc-ju" value="上传文件" />
+					</fieldset>
+				</form>
+				<div class="lgplist">
+					<p class="name right-center">工商文件</p>
+					<table class="table table-border">
+						<thead>
+						<tr>
+							<th>文件名</th>
+							<th>描述</th>
+							<th>下载地址</th>
+							<th>上传时间</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="file in vm.filelist2">
+							<td>{{file.name}}</td>
+							<td>{{file.description}}</td>
+							<td><a href="{{file.fundFileId | fundFileUrl}}" tagget="_bank">点击下载</a></td>
+							<td>{{file.timeAdded}}</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<form name="form2" ng-submit="vm.uploadbusinessFile2()">
+					<fieldset>
+						<p class="legend">上传工程相关文件</p>
+						<div class="a-upload">选择文件
+							<input type="file" ngf-select ng-model="vm.businessFile.content" name="businessFile" required />
+						</div>
+						<span class="filename">{{vm.businessFile.content.name}}</span>
+						<div class="form-group miaoshuzong">
+							<label class="col-sm-2 control-label">描述：</label>
+							<textarea  class="form-control miaoshu" rows="2" ng-model="vm.businessFile.description" name="businessFiledesc" required></textarea>
+							<span ng-show="vm.businessFile.result">{{vm.businessFile.result.retMsg}}</span>
+						</div>
+						<div ng-show="vm.businessFile.progress >= 0">
+							<uib-progressbar value="vm.businessFile.progress" type="success">
+								{{vm.businessFile.progress}}%
+							</uib-progressbar>
+						</div>
+						<input type="submit" class="btn1 bgc-ju" value="上传文件" />
+					</fieldset>
+				</form>
+				<div class="lgplist">
+					<p class="name right-center">备案文件</p>
+					<table class="table table-border">
+						<thead>
+						<tr>
+							<th>文件名</th>
+							<th>描述</th>
+							<th>下载地址</th>
+							<th>上传时间</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="file in vm.filelist3">
+							<td>{{file.name}}</td>
+							<td>{{file.description}}</td>
+							<td><a href="{{file.fundFileId | fundFileUrl}}" tagget="_bank">点击下载</a></td>
+							<td>{{file.timeAdded}}</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<form name="form3" ng-submit="vm.uploadrecordFile2()">
+					<fieldset>
+						<p class="legend">上传备案证明文件</p>
+						<div class="a-upload">选择文件
+							<input type="file" ngf-select ng-model="vm.recordFile.content" name="recordFile" required />
+						</div>
+						<span class="filename">{{vm.recordFile.content.name}}</span>
+						<div class="form-group miaoshuzong">
+							<label class="col-sm-2 control-label">描述：</label>
+							<textarea  class="form-control miaoshu" rows="2" ng-model="vm.recordFile.description" name="recordFiledesc" required></textarea>
+							<span ng-show="vm.recordFile.result">{{vm.recordFile.result.retMsg}}</span>
+						</div>
+						<div ng-show="vm.recordFile.progress >= 0">
+							<uib-progressbar value="vm.recordFile.progress" type="success">
+								{{vm.recordFile.progress}}%
+							</uib-progressbar>
+						</div>
+						<input type="submit" class="btn1 bgc-ju" value="上传文件" />
+					</fieldset>
+				</form>
+				<button class="btn1 bgc-ju" ui-sref="main.fundlist">完成</button>
+			</div>
+		</div>
+	</div>
+
+
+</div>

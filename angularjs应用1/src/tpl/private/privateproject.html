@@ -1,0 +1,118 @@
+<div>
+	<div class="main-private" ng-controller="privateController as vm">
+        <div class="gonghaitop">
+            <div>
+                <span>项目名称</span>
+                <input type="text"  placeholder="项目名称" ng-model="vm.projectName" ng-blur="vm.newsearch()" ng-keyup="vm.keyup($event)">
+            </div>
+            <div>
+                <span>地区</span>
+                <select ng-model="vm.areaId" ng-change="vm.newsearch()"
+                        ng-options="area.areaId as area.areaName for area in vm.arealist">
+
+                </select>
+            </div>
+            <div>
+                <span>行业</span>
+                <select ng-model="vm.categoryId" ng-change="vm.newsearch()"
+                        ng-options="category.categoryId as category.categoryName for category in vm.categorylist">
+
+                </select>
+            </div>
+            <div>
+                <span>融资轮次</span>
+                <select ng-model="vm.roundId" ng-change="vm.newsearch()"
+                        ng-options="round.roundId as round.roundName for round in vm.roundlist">
+
+                </select>
+            </div>
+            <div>
+                <span>状态</span>
+                <select ng-model="vm.status" ng-change="vm.newsearch()"
+                        ng-options="status.id as status.desc for status in vm.statuslist">
+
+                </select>
+            </div>
+        </div>
+        <table class="table table-border">
+            <thead>
+            <tr>
+                <th>项目编号</th>
+                <th>项目名称</th>
+                <th>所属行业</th>
+                <th>地域</th>
+                <th>融资轮次</th>
+                <th>标签</th>
+                <th>状态</th>
+                <th>商业模式</th>
+                <th>查看详情</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="project in vm.projectList">
+                <td>{{ project.projectId }}</td>
+                <td>{{ project.projectName }}</td>
+                <td>{{ project.categoryName }} </td>
+                <td>{{ project.areaName }}</td>
+                <td>{{ project.roundName }}</td>
+                <td>{{ project.tag }}</td>
+                <td>{{ project.status | statusdesc}}</td>
+                <td>{{ project.businessModel }}</td>
+                <td><button ui-sref="main.privateprojectdetail({'projectId': project.projectId})" class="btn1 bgc-lv">查看</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+               <span>
+                    <uib-pagination class="pagination-sm" total-items="vm.total" ng-model="vm.pageNumber"
+                        items-per-page="vm.pageSize" max-size="7"  boundary-link-numbers="true"
+                        ng-change="vm.search()" previous-text="&laquo;"
+                        next-text="&raquo;"></uib-pagination>
+                </span>
+            </ul>
+        </nav>
+
+        <div class="project-tab-box">
+            <ul class="detail-list">
+                <li class="list1"  ng-class="{active:vm.index == 0}">
+                    <p ng-click="vm.show1()">跟进项目</p>
+                    <i class="list-after"></i>
+                </li>
+                <li  class="list2"  ng-class="{active:vm.index == 1}">
+                    <i class="list-before"></i>
+                    <p ng-click="vm.show2()">已投项目</p>
+                    <i class="list-after"></i>
+                </li>
+                <li  class="list3"  ng-class="{active:vm.index == 2}">
+                    <i class="list-before"></i>
+                    <p ng-click="vm.show3()">退出项目</p>
+                    <i class="list-after"></i>
+                </li>
+                <li  class="list4" ng-class="{active:vm.index == 3}">
+                    <i class="list-before"></i>
+                    <p ng-click="vm.show4()">放弃项目</p>
+                    <i class="list-after"></i>
+                </li>
+            </ul>
+            <ul class="pd36">
+                <li ng-show="vm.index==0">
+                    <!--跟进项目-->
+                    <project-list title="跟进项目"  status="2"></project-list>
+                </li>
+                <li ng-show="vm.index==1">
+                    <!--已投项目-->
+                    <project-list title="已投项目" status="3"></project-list>
+                </li>
+                <li ng-show="vm.index==2">
+                    <!--退出项目-->
+                    <project-list title="退出项目" status="4"></project-list>
+                </li>
+                <li ng-show="vm.index==3">
+                    <!--放弃项目-->
+                    <project-list title="放弃项目" status="5"></project-list>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div>
+    <div class="main-gonghai" ng-controller="fundlistController as vm">
+        <nav class="xinjiangonghai">
+            <button class="btn2 bgc-lv" ui-sref="main.addfund" ng-show="vm.isAdmin===1"><span></span>新建基金</button>
+        </nav>
+        <div class="gonghaitop">
+            <div>
+                <span>基金名称</span>
+                <input type="text"  placeholder="项目名称" ng-model="vm.fundName" ng-blur="vm.newsearch()" ng-keyup="vm.keyup($event)">
+            </div>
+            <div>
+                <span>成立年份</span>
+                <select ng-model="vm.startDate" ng-change="vm.newsearch()" ng-options="item.dateId as item.dateName for item in vm.datelist"></select>
+            </div>
+            <div>
+                <span>币种</span>
+                <select ng-model="vm.moneyType" ng-change="vm.newsearch()" ng-options="item.typeId as item.typeName for item in vm.moneyTypelist"></select>
+            </div>
+        </div>
+        <table class="table table-border">
+            <thead>
+            <tr style=" margin-top:40px;">
+                <th>基金名称</th>
+                <th>成立时间</th>
+                <th>募集额度</th>
+                <th>货币类型</th>
+                <th>董事</th>
+                <th>总经办成员</th>
+                <th>查看详情</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr ng-repeat="fund in vm.fundlist">
+                <td>{{fund.fundName}}</td>
+                <td>{{fund.startDate}} </td>
+                <td>{{fund.money | moneydesc}}</td>
+                <td>{{fund.moneyType | moneyTypedesc}}</td>
+                <td>{{fund.directors}}</td>
+                <td>{{fund.managers}}</td>
+                <td><button ui-sref="main.funddetail({fundId: fund.fundId})" class="btn1 bgc-lv">查看</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+                <uib-pagination class="pagination-sm" total-items="vm.total" ng-model="vm.pageNumber"
+                    items-per-page="vm.pageSize" max-size="7"  boundary-link-numbers="true"
+                    ng-change="vm.search()" previous-text="&laquo;"
+                    next-text="&raquo;"></uib-pagination>
+            </ul>
+        </nav>
+    </div>
+</div>

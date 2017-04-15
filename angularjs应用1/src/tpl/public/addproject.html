@@ -1,0 +1,204 @@
+<div ng-controller="addprojectController as vm">
+
+    <div class="addgonghai">
+        <div class="bottom">
+            <ul class="add-progress">
+                <li ng-class="{true:'active'}[vm.step>0]">
+                    <p ng-class="{true:'active'}[vm.step == 1]">第一步：基本信息</p>
+                    <div class="progress"></div>
+                </li>
+                <li ng-class="{true:'active'}[vm.step>1]">
+                    <p ng-class="{true:'active'}[vm.step == 2]">第二步：团队信息</p>
+                    <div class="progress"></div>
+                </li>
+                <li ng-class="{true:'active'}[vm.step>2]">
+                    <p ng-class="{true:'active'}[vm.step == 3]">第三步：投资意向</p>
+                    <div class="progress"></div>
+                </li>
+                <li ng-class="{true:'active'}[vm.step>3]">
+                    <p ng-class="{true:'active'}[vm.step == 4]">第四步：上传文件</p>
+                    <div class="progress"></div>
+                </li>
+            </ul>
+            <form  ng-show="vm.step==1" ng-submit="vm.doStep1()">
+                <div class="top">
+                    <div>
+                        <span>项目名称</span>
+                        <input type="text" placeholder="项目名称" ng-model="vm.newproject.projectName" required>
+                    </div>
+                    <div>
+                        <span>当前轮次</span>
+                        <select  required ng-model="vm.newproject.currentRoundId"
+                                ng-options="round.roundId as round.roundName for round in vm.roundlist">
+                        </select>
+                    </div>
+                    <div>
+                        <span>所属行业</span>
+                        <select  required ng-model="vm.newproject.categoryId"
+                                ng-options="category.categoryId as category.categoryName for category in vm.categorylist">
+                        </select>
+                    </div>
+                    <div>
+                        <span>所属区域</span>
+                        <select  ng-model="vm.newproject.areaId"
+                                ng-options="area.areaId as area.areaName for area in vm.arealist">
+                        </select>
+                    </div>
+                    <div style="padding-top: 10px;">
+                            <span>项目标签（点击标签删除）</span>
+                            <i id="tag_style" ng-repeat="item in vm.tags track by $index" ng-click="vm.removetag($index)" >{{item}}</i>
+                        <div style="padding-top: 10px;">
+                            <span class="click_add_tag btn1 bgc-ju" ng-click="vm.addtag()">添加标签</span>
+                            <input type="text" placeholder="添加标签（选填）" ng-model="vm.ctag" id="tag" name="tag" />
+                        </div>
+                    </div>
+                </div>
+                <textarea class="form-control" rows="4" placeholder="项目简介" ng-model="vm.newproject.description" required></textarea>
+                <textarea class="form-control" rows="5" placeholder="市场分析" ng-model="vm.newproject.market" required></textarea>
+                <textarea class="form-control" rows="5" placeholder="商业模式" ng-model="vm.newproject.businessModel" required></textarea>
+                <textarea class="form-control" rows="5" placeholder="竞争对手" ng-model="vm.newproject.competitive" required></textarea>
+                <textarea class="form-control" rows="1" placeholder="项目来源（选填）" ng-model="vm.newproject.source"></textarea>
+                <textarea class="form-control" rows="5" placeholder="股权结构" ng-model="vm.newproject.options" required></textarea>
+                <input type="text" class="form-control" placeholder="联系人以及方式" ng-model="vm.newproject.contact" required />
+                <textarea class="form-control" rows="5" placeholder="补充信息（选填）" ng-model="vm.newproject.supplyment"></textarea>
+                <div class="anniu"><button class="btn1 bgc-ju">下一步</button></div>
+            </form>
+            <div  ng-show="vm.step==2">
+                <form ng-submit="vm.addfounder(vm.newfounder)">
+                    <div class="add_founder_information">
+                        <p>创始人信息：</p>
+                    </div>
+                    <table class="table table-border">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>职位</th>
+                                <th>电话</th>
+                                <th>微信</th>
+                                <th>邮箱</th>
+                                <th>教育背景</th>
+                                <th>工作背景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="founder in vm.fouderlist">
+                                <td>{{founder.name}}</td>
+                                <td>{{founder.title}}</td>
+                                <td>{{founder.phone}}</td>
+                                <td>{{founder.wechat}}</td>
+                                <td>{{founder.email}}</td>
+                                <td>{{founder.education}}</td>
+                                <td>{{founder.workEx}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <input type="text" class="form-control" placeholder="姓名" ng-model="vm.newfounder.name" required />
+                        <input type="text" class="form-control" placeholder="职位（选填）" ng-model="vm.newfounder.title" />
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="电话（选填）" ng-model="vm.newfounder.phone" />
+                        <input type="text" class="form-control" placeholder="微信（选填）" ng-model="vm.newfounder.wechat" />
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="邮箱（选填）" ng-model="vm.newfounder.email" />
+                    </div>
+                    <textarea class="form-control" rows="4" ng-model="vm.newfounder.education" placeholder="教育背景（选填）"></textarea>
+                    <textarea class="form-control" rows="4" ng-model="vm.newfounder.workEx" placeholder="工作背景（选填）"></textarea>
+
+                    <div class="anniu">
+                        <button class="fll btn1 bgc-ju">添加创始人</button>
+                        <div class="clear-both"></div>
+                    </div>
+                </form>
+                <button class="btn1 next-btn bgc-ju" ng-click="vm.initstep3()">下一步</button>
+            </div>
+            <form ng-show="vm.step==3" ng-submit="vm.finishstep3()">
+                <div class="form-invest">
+                    <p class="form-invest-left">项目状态</p>
+                    <p class="form-invest-right">新建项目</p>
+                </div>
+                <div class="form-invest">
+                    <p class="form-invest-left">投资轮次</p>
+                    <p class="form-invest-right">{{vm.roundName }}</p>
+                </div>
+
+                <div  class="form-invest">
+                    <p class="form-invest-left">本轮融资</p>
+                    <div class="form-invest-right">
+                        <input type="number" ng-model="vm.newIntentionInvest.moneynum" required />
+                        <span>万元</span>
+                    </div>
+                </div>
+                <div class="form-invest">
+                    <p class="form-invest-left">本轮融资币种</p>
+                    <div class="form-invest-right">
+                        <select required ng-model="vm.newIntentionInvest.moneyType"
+                                ng-options="item.typeId as item.typeName for item in vm.moneyTypelist">
+                        </select>
+                    </div>
+                </div>
+                <div  class="form-invest">
+                    <p class="form-invest-left">股份出让</p>
+                    <div class="form-invest-right">
+                        <input type="number" ng-model="vm.newIntentionInvest.percentagenum" required placeholder="0~100" />
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="form-invest">
+                    <p class="form-invest-left">项目估值</p>
+                    <p class="form-invest-right">{{ 100 * vm.newIntentionInvest.moneynum / vm.newIntentionInvest.percentagenum | number:2 }}万元</p>
+                </div>
+                <div class="anniu"><button class="btn1 bgc-ju">下一步</button></div>
+            </form>
+            <form name="form1" ng-show="vm.step==4" ng-submit="vm.upload()">
+                <div class="lgplist">
+                    <p class="name right-center">项目文件</p>
+                    <table class="table table-border">
+                        <thead>
+                            <tr>
+                                <th>文件名</th>
+                                <th>描述</th>
+                                <th>下载地址</th>
+                                <th>上传时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="file in vm.filelist">
+                                <td>{{file.name}}</td>
+                                <td>{{file.description}}</td>
+                                <td><a href="{{file.projectFileId | projFileUrl}}" tagget="_bank">点击下载</a></td>
+                                <td>{{file.timeAdded}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <uib-pagination class="pagination-sm" total-items="vm.total" ng-model="vm.pageNumber"
+						items-per-page="vm.pageSize" max-size="7"  boundary-link-numbers="true"
+						ng-change="vm.loadFile()" previous-text="上一页"
+						next-text="下一页"></uib-pagination>
+                </div>
+                <fieldset>
+                    <p class="legend">上传文件</p>
+                    <div class="a-upload">选择文件
+                        <input type="file" ngf-select ng-model="vm.newfile.file" name="regulationFile" required />
+                    </div>
+                    <span class="filename">{{vm.newfile.file.name}}</span>
+                    <div class="form-group miaoshuzong">
+                        <label class="col-sm-2 control-label" for="regulationFiledesc">描述：</label>
+                        <textarea  class="form-control miaoshu" rows="2" id="regulationFiledesc" ng-model="vm.newfile.description" name="regulationFiledesc" required>请输入原因</textarea>
+                        <span ng-show="vm.result">{{vm.result.retMsg}}</span>
+                    </div>
+                    <div ng-show="vm.progress>= 0">
+                        <uib-progressbar value="vm.progress" type="success">
+                            {{vm.progress}}%
+                        </uib-progressbar>
+                    </div>
+                    <input type="submit" class="btn1 bgc-ju" value="上传文件" />
+                </fieldset>
+                <div class="file_submit_box">
+                    <input type="button" value="提交" class="file_submit" ui-sref="main.publicproject" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<div class="usermanage" ng-controller="manageuserController as vm">
+	<ul class="detail-list">
+		<li class="list1"  ng-class="{active:vm.showindex == 1}">
+			<p ng-click="vm.show(1)">密码修改</p>
+			<i class="list-after"></i>
+		</li>
+		<li  class="list2"  ng-class="{active:vm.showindex == 2}">
+			<i class="list-before"></i>
+			<p ng-click="vm.show(2)">新建用户</p>
+			<i class="list-after"></i>
+		</li>
+		<li  class="list3"  ng-class="{active:vm.showindex == 3}">
+			<i class="list-before"></i>
+			<p ng-click="vm.show(3)">用户管理</p>
+			<i class="list-after"></i>
+		</li>
+		<li  class="list4" ng-class="{active:vm.showindex == 4}">
+			<i class="list-before"></i>
+			<p ng-click="vm.show(4)">行业标签</p>
+			<i class="list-after"></i>
+		</li>
+	</ul>
+	<div class="manage-content">
+		 <!--密码修改页面-->
+            <form class="form-horizontal" name="changeForm" ng-submit="vm.changePass(vm.newpassword)" ng-show="vm.showindex === 1">
+            	<h2 class="changepassword">密码修改</h2>
+            	<div class="user-name">
+					<label for="userId" class="left">用户名</label>
+					<div class="right">
+						<select id="userId" ng-model="vm.targetUserId"
+                        	ng-options="item.userId as item.realName for item in vm.userlist">
+                    	</select>
+					</div>				     
+				</div>
+            	 <div class="user-name">
+				     <label for="newpassword" class="left">新密码</label>
+				     <div class="right ">
+				        <input type="password" class="form-control" id="newpassword" placeholder="请输入你的新密码" ng-model="vm.newpassword" name="newpassword" required />
+				     </div>				     
+				 </div>
+        		 <div class="user-name">
+					   <div class="tgc errortip">
+					      <input type="submit" class="btn1 bgc-ju" value="确定"/>
+					      <span class="tip">{{ vm.msg }}</span>
+					   </div>
+				 </div>
+            </form>            
+             <!--新建用户界面-->
+            <form class="form-horizontal midify" name="addUserForm" ng-submit="vm.addUser(vm.user)" ng-show="vm.showindex === 2">
+            	<h2 class="changepassword">新建用户</h2>
+					  <div class="user-name">
+					    <label class="left">用户名</label>
+					    <div class="right">
+					      	<input type="text" class="form-control"  placeholder="请输入您的用户名" ng-model="vm.user.username" required>
+					      	<span></span>
+					    </div>
+					  </div>
+					  <div class="user-name">
+					    <label  class="left">中文名</label>
+					    <div class="right">
+					      	<input type="text" class="form-control"  placeholder="请输入您的真实姓名" ng-model="vm.user.realname" required>
+					      	<span></span>
+					    </div>
+					  </div>
+					  <div class="user-name">
+					    <label  class="left">密码</label>
+					    <div class="right">
+					      	<input type="password" class="form-control" placeholder="请输入您的密码" ng-model="vm.user.password" required >
+					      	<span></span>
+					    </div>
+					  </div>
+					  <div class="user-name">
+					    <label  class="left">职位</label>
+					    <div class="right">
+					      	<input type="text" class="form-control"  placeholder="请输入您的职位" ng-model="vm.user.position" required >
+					    </div>
+					  </div>
+					  <div class="user-name">
+					   <div class="tgc errortip">
+					      <input type="submit" class="btn1 bgc-ju" value="确定"/>
+					      <span class="tip">{{ vm.addMsg }}</span>
+					   </div>
+				 </div>
+            </form>
+             <!--用户管理-->
+            <div class="user-manage" ng-show="vm.showindex === 3">
+               <table class="table table-border">
+	               	<thead>
+	               		<tr>
+	               			<th>用户编号</th>
+	               			<th>用户名</th>
+	               			<th>中文名</th>
+	               			<th>用户状态</th>
+	               			<th>冻结/解冻</th>
+	               			<th>用户权限</th>
+	               			<th>提权/降权</th>
+	               		</tr>
+	               	</thead>
+	               	<tbody>
+	               		<tr ng-repeat="user in vm.userlist">
+	               			<td>{{ user.userId }}</td>
+	               			<td>{{ user.loginName }}</td>
+	               			<td>{{ user.realName }}</td>
+	               			<td>{{ user.isActive | activedesc }}</td>
+	               			<td>
+	               				<button ng-show="user.isActive===0" class="btn1 bgc-ju" ng-click="vm.activeUser(user.userId)" >解冻</button>
+	               				<button ng-show="user.isActive===1" class="btn1 bgc-lv"  ng-click="vm.deactiveUser(user.userId)">冻结</button>
+	               			</td>
+	               			<td>{{ user.isAdmin | admindesc }}</td>
+	               			<td>
+	               				<button ng-show="user.isAdmin===0" class="btn1 bgc-ju" ng-click="vm.upUser(user.userId)" >提权</button>
+	               				<button ng-show="user.isAdmin===1" class="btn1 bgc-lv" ng-click="vm.downUser(user.userId)">降权</button>
+	               			</td>
+	               		</tr>
+	               	</tbody>               	
+               </table>
+               <div class="tgr">
+                    <span>
+                        <uib-pagination total-items="vm.total" ng-model="vm.pageNumber" class="pagination-sm"
+                            items-per-page="vm.pageSize" max-size="7"  boundary-link-numbers="true" 
+                            ng-change="vm.showUser()" previous-text="上一页" 
+                            next-text="下一页"></uib-pagination>
+                    </span>
+                </div>  
+            </div>
+            <!-- 行业标签 -->
+             <form  class="form-horizontal name="addLabelForm" ng-submit="vm.addCategory(vm.categoryName)" ng-show="vm.showindex === 4">
+             	<div class="form-group hybq">
+				    <label for="industry-tag" class="col-sm-3 control-label text-right yh"></label>
+				    <div class="col-sm-5">
+				      	<input type="text" class="form-control" id="industry-tag" placeholder="行业标签" ng-model="vm.categoryName" required />						 
+				    </div>
+				    <div class="col-sm-3">
+				    	<input type="submit" value="添加" class="tijiao" />
+				    </div>
+				    <span class="tip">{{ vm.categoryMsg }}</span>
+				</div>
+				<h2 class="changepassword">行业标签</h2>
+				<div class="bighybq">
+	             	<table class="table table-border">
+	             		<thead>
+	             			<tr>
+	             				<th>行业ID</th>
+	             				<th>行业名字</th>
+	             			</tr>
+	             		</thead>
+	             		<tbody>
+	             			<tr ng-repeat="category in vm.categorylist">
+	             				<td>{{category.categoryId}}</td>
+	             				<td>{{category.categoryName}}</td>
+	             			</tr>
+	             		</tbody>
+	             	</table>
+				</div>            
+             </form>
+
+	</div>
+</div>

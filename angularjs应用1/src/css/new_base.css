@@ -1,0 +1,69 @@
+@charset "utf-8";
+body{font-size:12px; margin:0px; padding:0px; color:#000; font-family: "Microsoft YaHei", SimHei, Verdana, Arial, sans-serif, "Heiti SC";}
+div,h1,h2,h3,h4,h5,h6,img,ul,li,dl,dd,strong,span,a,input,button,select,form,textarea,td{ padding:0px; margin:0px;}
+img{ border:none;}
+ul,dl{ list-style-type:none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+a{ color:#000000; text-decoration:none;}
+a:hover{ color:#000000; text-decoration:underline;}
+img{border:none;}
+input,button,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;vertical-align:middle;}
+*{margin:0; padding:0;}
+input::-ms-clear { display: none; }
+.cle{ clear:both;}
+.topheight{ margin-top:20px;}
+html,body{ height:100%}
+body{ overflow-y:hidden}
+nav{text-align: right;}
+i{ width:18px; height:12px;display: inline-block; margin-right:10px;vertical-align: middle;}
+.top-r{ display: inline-block; float: right;}
+.top-r a{padding:0 10px; color:#666; font-size:14px; cursor:pointer}
+.top-r a:hover{ text-decoration: underline;}
+a:visited,a:hover,a:active{text-decoration: none;}
+.progress{ height:25px;line-height: 25px;}
+.legend{ font-size:13px; position:absolute; top:-13px; width:130px; height:25px; background: #e1e6ef; color:#6a7491; text-align: center; line-height:25px; border-radius: 4px;}
+fieldset{ border:1px solid #ddd; padding:30px 15px 20px; position:relative}
+.a-upload{ position: relative;display: inline-block;background: #D0EEFF;border: 1px solid #99D3F5;border-radius: 4px;width:90px;text-align:center;overflow: hidden;color: #1E88C7;text-decoration: none;text-indent: 0;line-height: 30px;}
+.a-upload input{position: absolute;font-size: 100px;right: 0;top: 0;opacity: 0; width:100px;height:30px;}
+.a-upload:hover {background: #AADFFD;border-color: #78C3F3;color: #004974;text-decoration: none;}
+.nodata{ font-size:16px; color:red; padding-top:10px;}
+.errortip{ position:relative}
+.errortip .tip{position:absolute; left:115px; top:31px; color:red}
+.filename{width:500px;height:30px;line-height:30px;display:inline-block;vertical-align:top;margin-left:20px;color:#8895b4;}
+.flr{float:right;}
+.fll{float:left;}
+.mb20{margin-bottom:20px;}
+.tgr{text-align:right;}
+.tgl{text-align:left;}
+.tgc{text-align:center;}
+.clear-both{clear:both;}
+.back-link{color:#0E6C9C;font-size:18px;line-height:42px;text-decoration:underline;display:block;}
+/*按钮样式*/
+.btn1{cursor:pointer;width:90px; height:30px;color:#fff; outline: none; border:0; font-size:14px; text-align: center; line-height: 30px;  border-radius: 4px;}
+.btn2{cursor:pointer;width:150px; height:30px;color:#fff; outline: none; border:0; font-size:14px; text-align: center; line-height: 30px;  border-radius: 20px;}
+.bgc-lv{background-color:#3fcacb}
+.bgc-lv:active{background-color:lightseagreen}
+.bgc-ju{background-color:#ff8463}
+.bgc-ju:active{background-color:lightcoral}
+/*table列表*/
+.table-border{border:1px solid #ddd;color:#596780;text-align:center;font-size:14px;background-color:#fff;}
+.table-border thead>tr>th{border-bottom:0;border-right:1px solid #fff;text-align:center;}
+.table-border thead>tr{background-color:#E1E6EF;}
+.table-border tbody>tr>td{border-top:0;border-right:1px solid #ddd;text-align:center;}
+.table-border tbody>tr>td:last-child{border-right:0;}
+.table-border thead>tr>th:last-child{border-right:0;}
+.table-border tbody>tr:nth-child(2n){background-color:#fafafa;}
+.pd36{padding:36px;}
+/*tab栏头*/
+.detail-list{height:46px;position:relative;}
+.detail-list>li{height:46px;position:absolute;top:0;}
+.detail-list>.list1{left:0;}
+.detail-list>.list2{left:124px;}
+.detail-list>.list3{left:294px;}
+.detail-list>.list4{left:464px;}
+.detail-list>li>p{cursor:pointer;line-height:46px;width:122px;float:left;font-size:14px;color:#fff;text-align:center;background:#3fcacb;}
+.detail-list>li>.list-before{margin:0;float:left;width:0;height:0;border-top:23px solid #3fcacb;border-right:23px solid #3fcacb;border-left:23px solid transparent;border-bottom:23px solid transparent;}
+.detail-list>li>.list-after{margin:0;float:left;width:0;height:0;border-top:23px solid transparent;border-right:23px solid transparent;border-left:23px solid  #3fcacb;border-bottom:23px solid  #3fcacb;}
+.detail-list>li.active>p{background:#fff;color:#6a7491;}
+.detail-list>li.active>.list-before{border-top:23px solid #fff;border-right:23px solid #fff;}
+.detail-list>li.active>.list-after{border-bottom:23px solid #fff;border-left:23px solid #fff;}

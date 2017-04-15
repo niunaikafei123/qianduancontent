@@ -1,0 +1,220 @@
+
+<div ng-controller="projectdetailController as vm">
+    <a class="back-link" ui-sref="main.privateproject">&lt;&lt;返回项目列表</a>
+    <div class="privateprojectdetail" ng-init="vm.loaddetail()">
+        <div class="privateproject-top">
+            <div>{{vm.project.projectName}}</div>
+            <div><span class="tag" ng-repeat="item in vm.tags">{{item}}</span></div>
+            <div>{{vm.project.categoryName}}</div>
+            <div>{{vm.project.areaName}}</div>
+            <div>{{vm.project.roundName}}</div>
+            <div>{{vm.project.status | statusdesc}}</div>
+        </div>
+        <ul class="detail-list">
+            <li class="list1"  ng-class="{active:vm.index == 0}">
+                <p ng-click="vm.show1()">基本信息</p>
+                <i class="list-after"></i>
+            </li>
+            <li  class="list2"  ng-class="{active:vm.index == 1}">
+                <i class="list-before"></i>
+                <p ng-click="vm.show2()">创业团队</p>
+                <i class="list-after"></i>
+            </li>
+            <li  class="list3"  ng-class="{active:vm.index == 2}">
+                <i class="list-before"></i>
+                <p ng-click="vm.show3()">意向信息</p>
+                <i class="list-after"></i>
+            </li>
+            <li  class="list4" ng-class="{active:vm.index == 3}">
+                <i class="list-before"></i>
+                <p ng-click="vm.show4()">文件附件</p>
+                <i class="list-after"></i>
+            </li>
+        </ul>
+        <div class="privateproject-content">
+            <!--基本信息-->
+            <div ng-show="vm.index==0" class="privateproject-content-left" >
+                <div class="title">
+                    <p class="title-left">基本信息</p>
+                </div>
+                <div class="txt">
+                    <label for="description">项目描述：</label>
+                    <input type="text" id="description" ng-model="vm.project.description" ng-readonly="vm.readonly" />
+                </div>
+                <div class="txt">
+                    <label for="market">市场规模：</label>
+                    <input type="text" id="market" ng-model="vm.project.market" ng-readonly="vm.readonly" />
+                </div>
+                <div class="txt">
+                    <label for="businessModel">商业模式：</label>
+                    <input type="text" id="businessModel" ng-model="vm.project.businessModel" ng-readonly="vm.readonly" />
+                </div>
+                <div class="txt">
+                    <label for="competitive">竞品信息：</label>
+                    <input type="text" id="competitive" ng-model="vm.project.competitive" ng-readonly="vm.readonly" />
+                </div>
+                <div class="txt">
+                    <label for="options">股权结构：</label>
+                    <input type="text" id="options" ng-model="vm.project.options" ng-readonly="vm.readonly" />
+                </div>
+            </div>
+            <!--创业团队-->
+            <div ng-show="vm.index==1" style="z-index: 100;" class="privateproject-content-left">
+                <div class="title">
+                    <p class="title-left">创业团队信息</p>
+                </div>
+                <table class="table table-border">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>电话</th>
+                        <th>微信</th>
+                        <th>邮箱</th>
+                        <th>教育</th>
+                        <th>履历</th>
+                        <th>头衔</th>
+                    </tr>
+                    </thead>
+                    <tboby>
+                        <tr ng-repeat="founder in vm.founderlist">
+                            <td>{{founder.name}}</td>
+                            <td>{{founder.phone}}</td>
+                            <td>{{founder.wechat}}</td>
+                            <td>{{founder.email}}</td>
+                            <td>{{founder.education}}</td>
+                            <td>{{founder.workEx}}</td>
+                            <td>{{founder.title}}</td>
+                        </tr>
+                    </tboby>
+                </table>
+            </div>
+            <!--融资信息-->
+            <div ng-show="vm.index==2" class="privateproject-content-left">
+                <div class="title">
+                    <p class="title-left">意向信息</p>
+                </div>
+                <table class="table table-border">
+                    <thead>
+                    <tr>
+                        <th>轮次</th>
+                        <th>融资额度</th>
+                        <th>货币类型</th>
+                        <th>出让比例</th>
+                        <th>估值</th>
+                        <th>添加时间</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-show="vm.intentioninvest">
+                        <tr>
+                            <td>{{vm.intentioninvest.roundName}}</td>
+                            <td>{{vm.intentioninvest.money | moneydesc}}</td>
+                            <td>{{vm.intentioninvest.moneyType | moneyTypedesc }}</td>
+                            <td>{{vm.intentioninvest.percentage | percentage }}</td>
+                            <td>{{vm.intentioninvest.value | moneydesc}}</td>
+                            <td>{{vm.intentioninvest.timeAdded}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="title">
+                    <p class="title-left">融资信息</p>
+                </div>
+                <table class="table table-border">
+                    <thead>
+                    <tr>
+                        <th>轮次</th>
+                        <th>融资额度</th>
+                        <th>货币类型</th>
+                        <th>出让比例</th>
+                        <th>估值</th>
+                        <th>基金</th>
+                        <th>可跟投额度</th>
+                        <th>已跟投额度</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="invest in vm.investlist">
+                        <td>{{invest.roundName}}</td>
+                        <td>{{invest.money | moneydesc}}</td>
+                        <td>{{invest.moneyType | moneyTypedesc}}</td>
+                        <td>{{invest.percentage | percentage }}</td>
+                        <td>{{invest.value | moneydesc}}</td>
+                        <td>{{invest.fundName}}</td>
+                        <td>{{invest.follow | moneydesc}}</td>
+                        <td>{{invest.followd | moneydesc}}</td>
+                        <td>{{invest.comment}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--文件附件信息-->
+            <div ng-show="vm.index==3" class="privateproject-content-left tgr">
+                <div class="title">
+                    <p class="title-left">文件附件信息</p>
+                </div>
+                <table class="table table-border">
+                    <thead>
+                    <tr>
+                        <th>文件名</th>
+                        <th>描述</th>
+                        <th>上传时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="file in vm.filelist">
+                        <td><a href="{{ file.projectFileId | projFileUrl}}">{{file.name}}</td>
+                        <td>{{file.description}}</td>
+                        <td>{{file.timeAdded}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <uib-pagination total-items="vm.total" ng-model="vm.pageNumber"
+                                items-per-page="vm.pageSize" max-size="7"  boundary-link-numbers="true"
+                                ng-change="vm.showProjectFile()" previous-text="上一页"
+                                next-text="下一页"></uib-pagination>
+            </div>
+            <!--右侧栏-->
+            <div class="privateproject-content-right">
+                <h2 class="found">项目负责人</h2>
+                <p class="found-list" ng-repeat="owner in vm.ownerlist"><span class="found-avatar glyphicon glyphicon-user" aria-hidden="true"></span>{{owner.realName}}</p>
+            </div>
+        </div>
+        <div class="privateproject-bottom">
+            <h2 class="action-title">Action 列表</h2>
+            <table class="table table-border">
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>描述</th>
+                    <th>文件</th>
+                    <th>时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="action in vm.actionlist">
+
+                    <td>{{action.title}}</td>
+                    <td>{{action.content}}</td>
+                    <td><a href="{{action.actionId | actionFileUrl}}">{{action.name}}</a></td>
+                    <td>{{action.timeAdded}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div ng-show="vm.project.status == 4" class="tgl">
+                <h2 class="quit-title">退出项目收益</h2>
+                <div class="quit-project">
+                    <p class="col-sm-4">回报金额</p>
+                    <p class="col-sm-8">{{vm.payback | moneydesc}}</p>
+                </div>
+                <div class="quit-project">
+                    <p class="col-sm-4">投资综合评估</p>
+                    <p class="col-sm-8">{{vm.comment}}</p>
+                </div>
+                <div class="quit-project">
+                    <p class="col-sm-4">退出时间</p>
+                    <p class="col-sm-8">{{vm.timeAdded}}</p>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>

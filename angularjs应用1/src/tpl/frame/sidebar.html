@@ -1,0 +1,52 @@
+<div class="shady-nav" ng-controller="sidenavController as vm">
+	<p>后台系统</p>
+	<div class="userarea">
+		<img src="img/touxiang.png"/>
+		<p>{{vm.realName}}</p>
+	</div>
+	<ul>
+		<li ui-sref="main.dashboard" class="li1" ui-sref-active="activeTab"><i></i><span>首页</span></li>
+		<li ui-sref="main.fundlist" class="li2" ui-sref-active="activeTab">
+			<i>
+				<ul>
+					<li ui-sref="main.addfund"></li>
+					<li ui-sref="main.funddetail"></li>
+				</ul>
+			</i>
+			<span>基金管理</span>
+		</li>
+		<li ui-sref="main.publicproject" class="li3" ui-sref-active="activeTab">
+			<i>
+				<ul>
+					<li ui-sref="main.addproject"></li>
+					<li ui-sref="main.publicprojectdetail"></li>
+				</ul>
+			</i>
+			<span>公海项目</span>
+		</li>
+		<li ui-sref="main.privateproject" class="li4" ui-sref-active="activeTab">
+			<i>
+				<ul>
+					<li ui-sref="main.privateprojectdetail"></li>
+					<li ui-sref="main.addinvest"></li>
+					<li ui-sref="main.addaction"></li>
+					<li ui-sref="main.transfer"></li>
+					<li ui-sref="main.share"></li>
+					<li ui-sref="main.quit"></li>
+				</ul>	
+			</i>
+			<span>私海项目</span>
+		</li>
+		<li ui-sref="main.projectmanager" class="li5" ui-sref-active="activeTab">
+			<i>
+				<ul>
+					<li ui-sref="main.projectdetail"></li>
+				</ul>
+			</i>
+			<span>项目管理</span>
+		</li>
+		<li ui-sref="main.dataanalysis" class="li6" ui-sref-active="activeTab"><i></i><span>数据分析</span></li>
+		<li ui-sref="main.usermanage" ng-show="vm.isAdmin == 1" class="li7" ui-sref-active="activeTab"><i></i><span>用户管理</span></li>
+		<li ui-sref="main.myaccount" class="li8" ui-sref-active="activeTab"><i></i><span>个人信息</span></li>
+	</ul>
+</div>

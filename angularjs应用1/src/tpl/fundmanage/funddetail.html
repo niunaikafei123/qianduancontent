@@ -1,0 +1,280 @@
+<div class="funddetail" ng-controller="funddetailController as vm">
+    <a class="back-link" ui-sref="main.fundlist">&lt;&lt;返回基金列表</a>
+    <div class="funddetail-box">
+        <h2>{{vm.current.fundName}}
+            <button ng-show="vm.isAdmin===1&&vm.current.isActive === 1" ng-click="vm.deactive()" class="frozen-fund btn2 bgc-lv">冻结基金</button>
+            <button ng-show="vm.isAdmin===1&&vm.current.isActive === 0" ng-click="vm.doactive()" class="frozen-fund btn2 bgc-ju">解冻基金</button>
+        </h2>
+        <ul class="detail-list">
+            <li class="list1"  ng-class="{active:vm.index == 0}">
+                <p ng-click="vm.show1()">基本信息</p>
+                <i class="list-after"></i>
+            </li>
+            <li  class="list2"  ng-class="{active:vm.index == 1}">
+                <i class="list-before"></i>
+                <p ng-click="vm.show2()">人员信息</p>
+                <i class="list-after"></i>
+            </li>
+            <li  class="list3"  ng-class="{active:vm.index == 2}">
+                <i class="list-before"></i>
+                <p ng-click="vm.show3()">文件信息</p>
+                <i class="list-after"></i>
+            </li>
+            <li  class="list4" ng-show="vm.isAdmin==1" ng-class="{active:vm.index == 3}">
+                <i class="list-before"></i>
+                <p ng-click="vm.show4()">上传附件</p>
+                <i class="list-after"></i>
+            </li>
+        </ul>
+        <ul class="detail-box">
+            <li class="detail-box1" ng-show="vm.index==0">
+                <ul class="detail-box1-top">
+                    <li><p class="left">成立时间</p><p class="right">{{vm.current.startDate}}</p></li>
+                    <li><p class="left">基金类型</p><p class="right">{{vm.current.moneyType | moneyTypedesc}}</p></li>
+                    <li><p class="left">募捐金额</p><p class="right">{{vm.current.money | moneydesc}}</p></li>
+                    <li><p class="left">投资方向</p><p class="right">{{vm.current.investTendency}}</p></li>
+                    <li><p class="left">责任期</p><p class="right">{{vm.current.period}}年</p></li>
+                    <li><p class="left">基金状态</p><p class="right">{{vm.current.isActive | activedesc}}</p></li>
+                </ul>
+                <div class="detail-box1-bottom">
+                    <div class="title">
+                        <div class="left">
+                            <p>已投额度 <span class="money">{{vm.current.usedMoney | moneydescwithoutunit}}</span>万</p>
+                        </div>
+                        <div class="right">
+                            <p>投资进度 </p>
+                            <uib-progressbar value="vm.current.usedMoney * 100 / vm.current.money | number:2" type="success"></uib-progressbar>
+                            <span>{{vm.current.usedMoney * 100 / vm.current.money | number:2}}%</span>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <h2>基金已投项目列表</h2>
+                        <table class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th>项目名称</th>
+                                    <th>标签</th>
+                                    <th>区域</th>
+                                    <th>轮次</th>
+                                    <th>融资额度</th>
+                                    <th>跟投</th>
+                                    <th>估值</th>
+                                    <th>详情</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="project in vm.projectList">
+                                    <td>{{project.projectName}}</td>
+                                    <td>{{project.tag}}</td>
+                                    <td>{{project.areaName}}</td>
+                                    <td>{{project.roundName}}</td>
+                                    <td>{{project.money | moneydesc}}</td>
+                                    <td>{{project.follow | moneydesc}}</td>
+                                    <td>{{project.value | moneydesc}}</td>
+                                    <td><button ui-sref="main.projectdetail({'projectId': project.projectId})">查看</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="flr">
+                            <uib-pagination class="pagination-sm" total-items="vm.total" ng-model="vm.pageNumber"
+                                            items-per-page="vm.pageSize" max-size="7"  boundary-link-numbers="true"
+                                            ng-change="vm.search()" previous-text="上一页"
+                                            next-text="下一页"></uib-pagination>
+
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+                </div>
+            </li>
+            <li class="detail-box2" ng-show="vm.index==1">
+                <ul class="detail-box1-top">
+                    <div class="btn-box" ng-show="vm.isAdmin == 1">
+                        <button ng-click="vm.updatesave(vm.current)" class="save">保存</button>
+                        <button ng-click="vm.readonly=!vm.readonly" class="edit">编辑</button>
+                    </div>
+                    <li><p class="left">法人</p><p class="right"><input  ng-model="vm.current.legal" ng-class="{active:!vm.readonly}" ng-readonly="vm.readonly"  /></p></li>
+                    <li><p class="left">总经办成员</p><p class="right"><input  ng-model="vm.current.managers" ng-class="{active:!vm.readonly}" ng-readonly="vm.readonly"  /></p></li>
+                    <li><p class="left">投委会成员</p><p class="right"><input  ng-model="vm.current.lps" ng-class="{active:!vm.readonly}" ng-readonly="vm.readonly" /></p></li>
+                    <li><p class="left">董事</p><p class="right"><input  ng-model="vm.current.directors" ng-class="{active:!vm.readonly}" ng-readonly="vm.readonly"/></p></li>
+                    <li><p class="left">监事</p><p class="right"><input  ng-model="vm.current.supervisors" ng-class="{active:!vm.readonly}" ng-readonly="vm.readonly" /></p></li>
+                    <li><p class="left">注册地址</p><p class="right"><input  ng-model="vm.current.address" ng-class="{active:!vm.readonly}" ng-readonly="vm.readonly"  /></p></li>
+                    <li><p class="left">补充信息</p><p class="right"><input  ng-model="vm.current.supplyment" ng-class="{active:!vm.readonly}" ng-readonly="vm.readonly" placeholder="无" /></p></li>
+                </ul>
+                <div class="detail-box1-bottom">
+                    <div class="content">
+                        <h2>LP列表</h2>
+                        <table class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th>姓名</th>
+                                    <th>联系方式</th>
+                                    <th>微信</th>
+                                    <th>邮箱</th>
+                                    <th>资金额度</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lp in vm.lplist">
+                                    <td>{{ lp.name }}</td>
+                                    <td>{{ lp.phone }}</td>
+                                    <td>{{ lp.wechat}}</td>
+                                    <td>{{ lp.email }}</td>
+                                    <td>{{ lp.money | moneydesc}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h2>GP列表</h2>
+                        <table class="table table-border">
+                            <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>联系方式</th>
+                                <th>微信</th>
+                                <th>邮箱</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="gp in vm.gplist">
+                                    <td>{{ gp.name }}</td>
+                                    <td>{{ gp.phone }}</td>
+                                    <td>{{gp.wechat}}</td>
+                                    <td>{{ gp.email }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </li>
+            <li class="detail-box3" ng-show="vm.index==2">
+                <div class="detail-box1-bottom">
+                    <div class="content">
+                        <h2>章程文件</h2>
+                        <table class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th>文件名</th>
+                                    <th>描述</th>
+                                    <th>下载地址</th>
+                                    <th>上传时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="file in vm.filelist1">
+                                    <td>{{file.name}}</td>
+                                    <td>{{file.description}}</td>
+                                    <td><a href="{{file.fundFileId | fundFileUrl}}" tagget="_bank">点击下载</a></td>
+                                    <td>{{file.timeAdded}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h2>工商文件</h2>
+                        <table class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th>文件名</th>
+                                    <th>描述</th>
+                                    <th>下载地址</th>
+                                    <th>上传时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="file in vm.filelist2">
+                                    <td>{{file.name}}</td>
+                                    <td>{{file.description}}</td>
+                                    <td><a href="{{file.fundFileId | fundFileUrl}}" tagget="_bank">点击下载</a></td>
+                                    <td>{{file.timeAdded}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h2>备案文件</h2>
+                        <table class="table table-border">
+                            <thead>
+                                <tr>
+                                    <th>文件名</th>
+                                    <th>描述</th>
+                                    <th>下载地址</th>
+                                    <th>上传时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="file in vm.filelist3">
+                                    <td>{{file.name}}</td>
+                                    <td>{{file.description}}</td>
+                                    <td><a href="{{file.fundFileId | fundFileUrl}}" tagget="_bank">点击下载</a></td>
+                                    <td>{{file.timeAdded}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </li>
+            <li class="detail-box4" ng-show="vm.index==3">
+                <div class="upload-box">
+                    <form name="form1" ng-submit="vm.uploadregulationFile2()">
+                        <fieldset>
+                            <p class="legend">上传章程文件</p>
+                            <div class="a-upload">选择文件
+                                <input type="file" ngf-select ng-model="vm.regulationFile.content" name="regulationFile" required />
+                            </div>
+                            <span class="filename">{{vm.regulationFile.content.name}}</span>
+                            <div class="form-group miaoshuzong">
+                                <label class="col-sm-2 control-label" for="regulationFiledesc">描述：</label>
+                                <textarea  class="form-control miaoshu" rows="2" id="regulationFiledesc" ng-model="vm.regulationFile.description" name="regulationFiledesc" required>请输入原因</textarea>
+                                <span ng-show="vm.regulationFile.result">{{vm.regulationFile.result.retMsg}}</span>
+                            </div>
+                            <div ng-show="vm.regulationFile.progress>= 0">
+                                <uib-progressbar value="vm.regulationFile.progress" type="success">
+                                    {{vm.regulationFile.progress}}%
+                                </uib-progressbar>
+                            </div>
+                            <input type="submit" class="btn1 bgc-ju" value="上传文件" />
+                        </fieldset>
+                    </form>
+                    <form name="form2" ng-submit="vm.uploadbusinessFile2()" class="hybq">
+                        <fieldset>
+                            <p class="legend">上传工程相关文件</p>
+                            <div class="a-upload">选择文件
+                                <input type="file" ngf-select ng-model="vm.businessFile.content" name="businessFile" required />
+                            </div>
+                            <span class="filename">{{vm.businessFile.content.name}}</span>
+                            <div class="form-group miaoshuzong">
+                                <label class="col-sm-2 control-label" for="businessFiledesc">描述：</label>
+                                <textarea  class="form-control miaoshu" rows="2" id="businessFiledesc" ng-model="vm.businessFile.description" name="businessFiledesc" required></textarea>
+                                <span ng-show="vm.businessFile.result">{{vm.businessFile.result.retMsg}}</span>
+                            </div>
+                            <div ng-show="vm.businessFile.progress >= 0">
+                                <uib-progressbar value="vm.businessFile.progress" type="success">
+                                    {{vm.businessFile.progress}}%
+                                </uib-progressbar>
+                            </div>
+
+                            <input type="submit" class="btn1 bgc-ju" value="上传文件" />
+                        </fieldset>
+                    </form>
+                    <form name="form3" ng-submit="vm.uploadrecordFile2()" class="hybq">
+                        <fieldset>
+                            <p class="legend">上传备案证明文件</p>
+                            <div class="a-upload">选择文件
+                                <input type="file" ngf-select ng-model="vm.recordFile.content" name="recordFile" required />
+                            </div>
+                            <span class="filename">{{vm.recordFile.content.name}}</span>
+                            <div class="form-group miaoshuzong">
+                                <label class="col-sm-2 control-label" for="recordFiledesc" >描述：</label>
+                                <textarea  class="form-control miaoshu" rows="2" id="recordFiledesc" ng-model="vm.recordFile.description" name="recordFiledesc" required></textarea>
+                                <span ng-show="vm.recordFile.result">{{vm.recordFile.result.retMsg}}</span>
+                            </div>
+                            <div ng-show="vm.recordFile.progress >= 0">
+                                <uib-progressbar value="vm.recordFile.progress" type="success">
+                                    {{vm.recordFile.progress}}%
+                                </uib-progressbar>
+                            </div>
+
+                            <input type="submit" class="btn1 bgc-ju" value="上传文件" />
+                        </fieldset>
+                    </form>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+</div>

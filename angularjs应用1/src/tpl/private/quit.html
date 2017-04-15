@@ -1,0 +1,24 @@
+<div ng-controller="quitController as vm">
+    <a class="back-link" ui-sref="main.privateprojectdetail({'projectId':vm.projectId})">&lt;&lt;返回项目详情</a>
+        <div class="quitInvestment">
+            <form class="quitInvestment-box" ng-submit="vm.doquit()" >
+                <p class="title">退出信息</p>
+                <div  class="form-addInvestment">
+                    <p class="left">回报额度</p>
+                    <div class="right">
+                        <input type="number" ng-model="vm.newgain.moneynum" placeholder="回报额度，注意货币单位" required />
+                        <span>万元</span>
+                    </div>
+                </div>
+                <div  class="form-addInvestment">
+                    <p class="left">投资评估</p>
+                    <div class="right">
+                        <textarea type="text" ng-model="vm.newgain.comment" placeholder="最多输入1000个汉字" required ></textarea>
+                    </div>
+                </div>
+                <div class="quitInvestment-btn">
+                    <input type="submit" class="btn1 bgc-ju" value="提交" />
+                </div>
+            </form>
+        </div>
+</div>

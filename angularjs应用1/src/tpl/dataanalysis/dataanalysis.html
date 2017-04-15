@@ -1,0 +1,190 @@
+<div class="dataanalysis" ng-controller="dataanalysisController as vm">
+	<div class="buttonexchange">
+		<button class="btn1" ng-click="vm.showGlobal()" ng-class="{active:vm.index === 0}">总体分析</button>
+		<button class="btn1" ng-click="vm.showLocal()" ng-class="{active:vm.index === 1}">基金分析</button>
+	</div>
+	<div ng-show="vm.index==0">
+		<p class="title">总体分析</p>
+		<div class="fundtop">
+			<span>基金数量：{{ vm.fundCount }}</span>
+			<span>基金经理数量 ：{{ vm.managerCount }}</span>
+		</div>
+		<div class="fundtuxing">
+			<table>
+				<thead>
+					<tr>
+						<th><span class="title">行业分布</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<pie-chart config="vm.config" data="vm.bardata1"></pie-chart>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<thead>
+					<tr>
+						<th><span class="title">工作力分布</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<pie-chart config="vm.config" data="vm.bardata2"></pie-chart>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<thead>
+					<tr>
+						<th><span class="title">轮次分布</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<pie-chart config="vm.config" data="vm.bardata3"></pie-chart>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="fundtuxing">
+			<table class="diyu">
+				<thead>
+					<tr>
+						<th><span class="title">地域分布</span><i class="i1"></i><span class="name">项目数量</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<bar-chart config="vm.config" data="vm.bardata7"></bar-chart>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div ng-show="vm.index==1">
+		<p class="title">基金分析</p>
+		<div class="fundtop">
+			<div>
+				  <label for="fund">选择基金</label>
+		          <select id="fund" ng-model="vm.fundId" ng-change="vm.search(vm.fundId)"
+		              ng-options="fund.fundId as fund.fundName for fund in vm.fundlist">
+		          </select>
+			</div>
+			<div>
+				<span>基金总募集额度：{{ vm.money | moneydesc }}</span>
+			</div>
+			<div>
+				<span>基金经理数量 ：{{ vm.manager }}</span>
+			</div>
+		</div>
+		<div class="fundtuxing">
+			<table>
+				<thead>
+					<tr>
+						<th><span class="title">行业分布</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<pie-chart config="vm.config1" data="vm.bardata4"></pie-chart>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<thead>
+					<tr>
+						<th><span class="title">工作力分布</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<pie-chart config="vm.config1" data="vm.bardata5"></pie-chart>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<thead>
+					<tr>
+						<th><span class="title">轮次分布</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<pie-chart config="vm.config1" data="vm.bardata6"></pie-chart>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="fundtuxing">
+			<table class="diyu">
+				<thead>
+					<tr>
+						<th><span class="title">地域分布</span><i class="i1"></i><span class="name">项目数量</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<bar-chart config="vm.config" data="vm.bardata8"></bar-chart>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

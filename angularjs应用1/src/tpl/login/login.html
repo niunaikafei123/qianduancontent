@@ -1,0 +1,26 @@
+<div ng-controller="LoginCtrl as vm">
+	<div class="shady_login_con">
+		<div class="shady_login_arrow">
+			<div class="con">
+				<p>shady</p>
+				<div class="top"></div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="shady_login_center">
+			<form name="loginFrom" ng-submit="vm.login(user)">
+				<ul>
+					<li class="li1"><p>用户名：</p></li>
+					<li><input type="text" placeholder="请输入用户名" name="username" ng-model="user.username" required autofocus/></li>
+					<div class="clearfloat"></div>
+				</ul>
+				<ul>
+					<li class="li1"><p>密码：</p></li>
+					<li><input type="password" placeholder="请输入密码" name="password" ng-model="user.password" required/></li>
+					<div class="clearfloat"></div>
+				</ul>
+				<input type="submit" value="登录" class="shady_button" />
+			</form>
+		</div> 
+	</div>
+</div>

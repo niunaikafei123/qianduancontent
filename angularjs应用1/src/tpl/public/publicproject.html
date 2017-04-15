@@ -1,0 +1,57 @@
+<div>
+	<div class="main-gonghai" ng-controller="projectController as vm">
+		<nav class="xinjiangonghai">
+			<button class="btn2 bgc-lv" ui-sref="main.addproject"><span></span>新建公海项目</button>
+		</nav>
+		<div class="gonghaitop">
+			<div>
+				<span>项目名称</span>
+				<input type="text"  placeholder="项目名称" ng-model="vm.projectName" ng-blur="vm.newsearch()" ng-keyup="vm.keyup($event)">
+			</div>
+			<div>
+				<span>地区</span>
+				<select ng-model="vm.areaId" ng-change="vm.newsearch()" ng-options="area.areaId as area.areaName for area in vm.arealist"></select>
+			</div>
+			<div>
+				<span>行业</span>
+				<select ng-model="vm.categoryId" ng-change="vm.newsearch()" ng-options="category.categoryId as category.categoryName for category in vm.categorylist"></select>
+			</div>
+			<div>
+				<span>融资轮次</span>
+				<select ng-model="vm.roundId" ng-change="vm.newsearch()" ng-options="round.roundId as round.roundName for round in vm.roundlist"></select>
+			</div>
+		</div>
+		<table class="table table-border">
+			<thead>
+			<tr style=" margin-top:40px;">
+				<th>项目编号</th>
+				<th>项目名称</th>
+				<th>所属行业</th>
+				<th>地域</th>
+				<th>融资轮次</th>
+				<th>查看详情</th>
+				<th>加入私海项目</th>
+			</tr>
+			</thead>
+			<tbody >
+			<tr ng-repeat="project in vm.projectList">
+				<td>{{project.projectId}}</td>
+				<td>{{project.projectName}} </td>
+				<td>{{project.categoryName}}</td>
+				<td>{{project.areaName}}</td>
+				<td>{{project.roundName}}</td>
+				<td><button ui-sref="main.publicprojectdetail({projectId: project.projectId})" class="btn1 bgc-lv">查看</button></td>
+				<td><button ng-click="vm.ownProject(project.projectId)" class="btn1 bgc-ju">加入私海</button></td>
+			</tr>
+			</tbody>
+		</table>
+		<nav>
+			<ul class="pagination">
+				<uib-pagination class="pagination-sm" total-items="vm.total" ng-model="vm.pageNumber"
+					items-per-page="vm.pageSize" max-size="7"  boundary-link-numbers="true"
+					ng-change="vm.search()" previous-text="&laquo;"
+					next-text="&raquo;"></uib-pagination>
+			</ul>
+		</nav>
+	</div>
+</div>
