@@ -1,0 +1,5 @@
+若使用rem做单位，需要在index页面的head部分引入以下： 
+
+<script>
+    	document.getElementsByTagName("html")[0].style.fontSize=document.documentElement.clientWidth/20+"px";  	
+ </script>
