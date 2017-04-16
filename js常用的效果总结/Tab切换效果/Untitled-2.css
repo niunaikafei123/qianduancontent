@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ padding:0px; margin:0px;}
+ul li{ list-style:none;}
+#third{ height:485px; margin:0 auto;border:1px solid #F00; width:1000px;}
+#tab_left{ height:485px; width:400px; float:left;}
+#tab_left li{ margin-bottom:8px; height:115px; background:url(images/8.gif) no-repeat;}
+#tab_left li:hover{background:url(images/7.gif) no-repeat;color:#FFF;}
+#tab_left li p1{ display:block; font-size:20px; margin-left:25px; padding-top:16px; }
+#tab_left li p2{ display:block; font-size:16px; margin-left:10px; padding-top:20px;}
+#tab_con li{ width:595px; height:485px; float:left;}
+#tab_con li p1{width:570px; height:auto; margin-left:15px; font-size:16px; text-indent:2em; display:block; padding-top:25px; line-height:33px; letter-spacing:normal; font-family:"微软雅黑"; font-size:16px;}
+#tab_con li p2{width:570px; height:auto; margin-left:15px; font-size:16px; text-indent:2em; display:block; line-height:33px; letter-spacing:normal;}
+#tab_con li img{ margin-left:100px; margin-top:10px;}

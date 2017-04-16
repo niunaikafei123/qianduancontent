@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+a{ text-decoration:none;}
+.forteenth{ width:1440px; height:895px; background:url(images/19.gif) no-repeat; margin:0 auto;}
+.main20Con{ width:920px; height:798px; position:relative;}
+.main20Con a{ display:block; width:227px; height:77px; position:absolute;color:#fff; text-align:center; padding-top:150px; margin-left:260px; font-size:0;}
+.main20Con a:hover{ background:url(images/zhezhao.png) no-repeat 0 0;  font-size:24px;}
+
+.t1{top:0; left:231px}
+.t2{top:0; left:458px}
+.t3{top:115px; left:116px}
+.t4{top:115px; left:573px}
+.t6{top:343px; left:574px}
+.t7{top:457px; left:0px}
+.t8{top:457px; left:229px}
+.t9{top:457px; left:459px}
+.t10{top:458px; left:689px}
+.t11{top:573px; left:344px}
+.t5{top:343px; left:115px}

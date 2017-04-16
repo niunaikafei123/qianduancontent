@@ -1,0 +1,24 @@
+@charset "utf-8";
+body, div, h1, h2, h3, h4, h5, a, img, strong, span, var, em, ul, li, dt, dd, dl, p, table, tr, th, td, input, option, select, form, textarea { margin: 0; padding: 0; font-family: 寰蒋闆呴粦,瀹嬩綋; }/*鏂扮粏鏄庝綋 寰蒋闆呴粦 瀹嬩綋*/
+ul, ol { list-style: none; }
+.clear { clear: both; height: 0; overflow: hidden; }
+a img { border: none; }
+a:focus { outline: 0; }
+a { blr:expression(this.onFocus=this.blur());
+}
+a { text-decoration: none; }
+ul, ol { list-style-type: none; }
+em, var { font-style: normal; }
+
+
+
+.zuo{width: 260px;float: left; position:absolute; margin-left:700px;}
+.zuo .ul1{width: 260px;height:410px;position: relative;margin-top:15px;}
+.zuo .ul1 li{width: 260px;height: 410px;position: absolute;top:0px;left: 0px;}
+.zuo .ul1 li .p1{font-size: 16px;margin-top: 267px;padding-left: 45px;color: #004F81;}
+.zuo .ul1 li .p2{font-size: 14px;padding:10px 15px 10px 15px;text-indent: 2em;line-height: 24px;color: #000;}
+.zuo .ul2{width: 260px;overflow: hidden;margin-top:10px;}
+.zuo .ul2 li{width: 260px;height:47px;border-bottom:1px dashed #AFAFAF;}
+.zuo .ul2 li .span1{width:27px;height: 27px;float: left;margin-left: 15px;margin-top:10px;}
+.zuo .ul2 li .span2{width:27px;height: 27px;float: left;margin-left: 15px;margin-top:10px;}
+.zuo .ul2 li .span3{height: 47px;line-height: 47px;margin-left: 20px;color: #A6A6A7;}

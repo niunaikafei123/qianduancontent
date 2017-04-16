@@ -1,0 +1,7 @@
+@charset "utf-8";
+.ss{width: 650px;height: 235px; margin:0 auto;}
+.ss .d1{width: 575px;height: 235px;float: left;position: relative;overflow: hidden;}
+.ss  .zuo11{width: 35px;height: 235px;float: left;background:url(../images/30.jpg) no-repeat;cursor: pointer;}
+.ss  .you11{width: 35px;height: 235px;float: left; background:url(../images/31.jpg) no-repeat;cursor: pointer;}
+.ss .d1 .li{width: 4025px;height: 235px;position: absolute;top:0px;left:0px;}
+.ss .d1 .li a{float: left;}

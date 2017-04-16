@@ -1,0 +1,1 @@
+*{ margin:0px; padding:0px; font-family:"Î¢ÈíÑÅºÚ;"} ul,li,p,span,dl,dt,dd,h1,h2,h3,h4,h5,h6,a,img,ol{ padding:0; margin:0;list-style:none;font-family:"Î¢ÈíÑÅºÚ";} img{ border:none;font-family:"Î¢ÈíÑÅºÚ";} a{ text-decoration:none;} table{ border-collapse:collapse}.clear{clear:both;height:0px;width:100%;margin:0px;padding:0px;}body{font-size:14px;color:#000;font-family:"Î¢ÈíÑÅºÚ";}

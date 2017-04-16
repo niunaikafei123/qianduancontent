@@ -1,0 +1,41 @@
+#zzsc {
+		width: 720px;	/* 圖片的寬 */
+		height: 420px;	/* 圖片的高 */
+		overflow: hidden;
+	}
+	#zzsc a {
+		position: absolute;
+		top: 0; 
+		left: 0;
+	}
+	#zzsc a img {
+		border: none;
+	}
+
+	/* 以下是針對選單按鈕設定 */
+	#zzsc .abgne-controls {
+		list-style: none; 
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		right: 10px;
+		bottom: 25px;
+		height: 20px;
+	}
+	#zzsc .abgne-controls li {
+		float: left;
+		width: 35px;
+		height: 35px;
+		line-height: 35px;
+		font-size: 20px;
+		font-weight: 900;
+		text-align: center;
+		cursor: pointer;
+		margin-right: 2px;
+		color: #0cf;
+		background-color: #fff;
+	}
+	#zzsc .abgne-controls li.current { 
+		color: #fff;
+		background-color: #0cf;
+	}

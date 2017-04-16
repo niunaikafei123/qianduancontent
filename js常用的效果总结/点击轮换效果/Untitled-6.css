@@ -1,0 +1,10 @@
+@charset "utf-8";
+.imgBox0{width:500px; overflow:hidden;float:left;}
+#imgBox{ width:1500px;  }
+#holder{width:580px; margin:0 auto;}
+.simple_slider_hover { cursor: pointer; cursor: hand }
+.simple_slider_disabled { opacity : 0.2; filter: alpha(opacity=20); zoom: 1; }
+#leftNav{float:left;cursor:pointer; margin-top:50px;}
+#rightNav{float:left;margin-top:50px;}
+.objImgFrame{ margin-left:5px;}
+
