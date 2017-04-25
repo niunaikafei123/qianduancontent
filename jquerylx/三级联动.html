@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery.min.js"></script>
+	</head>
+	<body>
+		<fieldset>
+			<legend>三级联动练习</legend>
+			<select id="province"></select>
+			<select id="city"></select>
+			<select id="country"></select>
+		</fieldset>
+	</body>
+	<script type="text/javascript">
+	var datas=[
+		{name:"河北",id:1,
+		citys:[
+				{name:'石家庄',id:11,
+					area:[
+						{name:"桥西区",id:111},{name:"桥东区",id:112}
+					]},
+				{name:"邢台",id:12,
+				 	area:[
+					 	{name:"沙河市",id:121},
+					 	{name:"南宫市",id:122}
+					 ]}
+			  ]
+		},
+		{name:"河南",id:2,
+			citys:[
+				{name:"郑州市",id:21,
+					area:[
+						{name:"郑州11",id:211},
+						{name:"郑州22",id:212}
+					]
+				},
+				{name:"洛阳市",id:22,
+					area:[
+						{name:"新华市",id:221},
+						{name:"拉拉市",id:222},
+					]					
+				}
+			]			
+		}
+	]
+		var province = $("#province");
+		$.each(datas, function(i,e) {
+			province.append("<option value=" + e.id + ">" + e.name + "</option>")
+		});
+		var city = $("#city");
+		province.change(function(){
+			var sheng = $("#province").val();
+			console.log(sheng);
+			$.each(datas, function(i,e) {
+				if(e.id == sheng){
+					console.log(123456);
+					$("#city option").remove();
+					$.each(e.citys, function(cityindex,cityvalue) {
+						console.log(888);
+						city.append("<option value=" + cityvalue.id + ">" + cityvalue.name + "</option>");
+					});
+				}
+			});
+		})
+		city.change(function(){
+			var sheng = $("#province").val();
+			var shi = $("#city").val();
+			$.each(datas, function(i,e) {
+				if(e.id == sheng){
+					$.each(e.citys, function(cityindex,cityvalue) {
+						if(cityvalue.id == shi){
+							$("#country option").remove();
+							$.each(cityvalue.area, function(areaindex,areavalue) {
+								$("#country").append("<option value=" + areavalue.id + ">" + areavalue.name + "</option>")
+							});
+						}
+					});
+				}
+				
+			});
+		})
+	</script>
+</html>

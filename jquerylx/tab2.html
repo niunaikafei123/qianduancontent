@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="jquery.min.js"></script>
+<style>
+.selected{background-color:green;}
+.tab{margin:0;padding: 0;list-style: none;}
+.tab li{display: inline-block;padding: 5px 10px 5px 10px;}
+</style>
+</head>
+<body>
+<div class="tab-wrapper">
+	<ul class="tab">
+		<li>tab1</li>
+		<li>tab2</li>
+		<li>tab3</li>
+	</ul>
+	<div class="content-wrapper">
+		<div class="content">内容1</div>
+		<div class="content">内容2</div>
+		<div class="content">内容3</div>
+	</div>
+</div>
+<script>
+//初始化
+function tabInit(){
+	var selectedClass='selected';//选中的样式
+	var contents=$(".tab-wrapper .content-wrapper .content");
+	var tabs=$(".tab-wrapper .tab li");
+	
+	contents.hide();//隐藏所有的内容
+	$(contents[0]).show();//显示第一个内容
+	$(tabs[0]).addClass(selectedClass);//给选中的第一个tab付上选中样式
+	
+	//给tabs付点击事件
+	tabs.click(function(){
+		var selectedIndex=$.inArray(this,tabs);//选中索引
+		$(tabs).removeClass(selectedClass);//移除选中的央视
+		$(this).addClass(selectedClass);//给当前tab加选中样式
+		contents.hide();//隐藏所有的内容
+		$(contents[selectedIndex]).show();//显示当前tab对应的内容
+	});
+}
+tabInit();
+</script>
+</body>
+<html>

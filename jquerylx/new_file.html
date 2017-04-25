@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<select id=province></select>
+		<select id=city></select>
+		<select id=area></select>
+		<script src="jquery.min.js"></script>
+		<script>
+		try
+		{
+			var areaData=[
+{name:'安徽',id:1,
+	citys:[
+		{name:'合肥',id:11,
+		Area:[
+			{name:'aaa',id:11},
+			{name:'bbb',id:12},
+		]
+		},
+		{name:'宿州',id:2,
+		Area:[
+			{name:'aaa2',id:21},
+			{name:'bbb2',id:122},
+		]
+		}
+	]
+},
+{name:'北京',id:2,
+	citys:[
+		{name:'北京',id:21,
+			Area:[
+				{name:'朝阳',id:211},
+				{name:'海淀',id:212},
+			]
+		}
+	]
+}
+
+]
+
+;
+			var province=$("#province");
+			var city =$("#city");
+			province.change(function(){
+				var selectedProvince=$("#province").val();
+				$.each(areaData,function(i,data){
+					if(data.id==selectedProvince){
+						
+						$("#city option").remove();
+						$("#area option").remove();
+						$.each(data.citys,function(indexOfCity,city){
+						$("#city").append("<option value="+city.id+">"+city.name+"</option>");							
+						});
+					}
+				})
+			});
+			city.change(function(){
+				var selectedprovince = $("#province").val();
+				$.each(areaData,function(i,data){
+					if(data.id == selectedprovince){
+						$.each(data.citys, function(indexOfCity,city) {
+							var selectedcity = $("#city").val();
+							if(city.id == selectedcity){
+								$("#area option").remove();
+								$.each(city.Area, function(areaindex,area) {
+									$("#area").append("<option value="+area.id+">" + area.name + "</option>")
+								});
+							}
+						});
+					}
+				})
+			})
+			
+			$.each(areaData, function(i,data) {
+				province.append("<option value="+data.id+">"+data.name+"</option>")
+			});
+			
+			
+       }
+		catch(e){
+			console.log(e);
+		}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery.min.js"></script>
+		<style>
+			ul li{list-style: none; float:left}
+			.selected{background: red;}
+			ul{overflow: hidden;}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>链接1</li>
+			<li>链接2</li>
+			<li>链接3</li>
+		</ul>
+		<div id="content">
+			<div>content1</div>
+			<div>content2</div>
+			<div>content3</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	    $("#content div").eq(0).show().siblings().hide();
+//	    var selected = 'selected';
+	    var tabs =$("ul li")
+	    tabs.click(function(){
+//	    	var index = $.inArray(this,tabs);  //获取当前点击的元素在所有同类元素中的索引
+            var index = tabs.index($(this));  //获取当前点击的元素在所有同类元素中的索引
+            $(tabs).removeClass('selected');
+            $(this).addClass('selected');
+	    	console.log(index);
+	    	$("#content div").eq(index).show().siblings().hide();
+	    })
+	</script>
+</html>

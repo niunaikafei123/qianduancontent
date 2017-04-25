@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin:0;padding: 0;}
+			ul{height: 50px;margin:0 auto;}
+			ul li{list-style: none;float: left;line-height: 50px;width:100px;
+				margin-right: 50px;background: red;text-align: center;color: #fff;
+			}	
+			div{
+				width:100px;height: 50px;background: burlywood;color: #fff;line-height: 50px;
+				text-align: center;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<ul class="first">
+			<li>b</li>
+			<li>s</li>
+			<li>g</li>
+			<li>c</li>
+		</ul>
+	</body>
+	<script src="jquery.min.js"></script>
+	<script>
+		var arr = [
+			{
+				name : '北京',
+				first : 'b',
+				message : '北京1111'
+			},
+			{
+				name : '深圳',
+				first : 's',
+				message : '深圳2222'
+			},
+			{
+				name : '上海',
+				first : 's',
+				message : '上海3333'
+			},
+			{
+				name : '成都',
+				first : 'c',
+				message : '成都4444'
+			},
+			{
+				name : '石家庄',
+				first : 's',
+				message : '石家庄5555'
+			}
+		];
+		
+		$('ul.first').find('li').each(function(index){
+			console.log(index);
+			// 把
+			var $this = $(this).data('city',[]);
+			for(var i = 0 ; i < arr.length ; i++){
+				if( $this.text() === arr[i]['first'] ){
+					// 这句代码可以不要,是优化效率,主要是把已经筛选出来的元素从数组中剔除
+					arr.splice(i,1);
+					$(this).data('city').push(arr[i]);
+				}
+			}
+			console.log($(this).data('city').length);
+			
+			$this.on('click',function(){
+				// 第二排的ul给.second的类
+				$('.second').remove();
+				$('.third').remove();
+				var ul = $('<ul>').addClass('second');
+				
+				
+				
+				for(var j = 0 , length = $this.data('city').length ; j < length ; j++){
+					console.log(1)
+					$('<li>').text( $this.data('city')[j].name ).data('city',$this.data('city')[j]).appendTo(ul);
+				}
+				ul.appendTo('body');
+						// 事件委托
+				$('.second').on('click','li',function(){
+					$('.third').remove();
+					$('<div>').addClass('third').text($(this).data('city').message).appendTo('body')
+				});
+			});
+		});
+		
+		
+		
+		
+		
+		
+	</script>
+</html>
